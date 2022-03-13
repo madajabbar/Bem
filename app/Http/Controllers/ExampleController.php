@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\ExampleForm;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class ExampleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        //
+        $data['title'] = 'This Is An Example Form';
+        return view('example.form',compact('data'));
     }
 
     /**
@@ -35,7 +36,35 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $example = new ExampleForm();
+        if ($request->picture) {
+            $validatedData = $request->validate([
+                'picture' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+
+               ]);
+
+               $name = $request->picture->getClientOriginalName();
+               $path = $request->picture->store('public/images');
+
+            $example->first_name = $request->first_name;
+            $example->last_name = $request->last_name;
+            $example->city = $request->city;
+            $example->country = $request->country;
+            $example->company = $request->company;
+            $example->email = $request->email;
+            $example->picture = $path;
+        }
+        else{
+            $example->first_name = $request->first_name;
+            $example->last_name = $request->last_name;
+            $example->city = $request->city;
+            $example->country = $request->country;
+            $example->company = $request->company;
+            $example->email = $request->email;
+        }
+        $example->save();
+        return redirect()->back();
     }
 
     /**

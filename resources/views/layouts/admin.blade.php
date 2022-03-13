@@ -39,7 +39,7 @@
 
                         <li
                             class="sidebar-item active ">
-                            <a href="{{url('/')}}" class='sidebar-link'>
+                            <a href="{{route('dashboard')}}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -61,28 +61,28 @@
 
                         <li
                             class="sidebar-item">
-                            <a href="#" class='sidebar-link'>
+                            <a href="{{route('quill')}}" class='sidebar-link'>
                                 <i class="bi bi-collection-fill"></i>
                                 <span>Quill Editor</span>
                             </a>
                         </li>
                         <li
                             class="sidebar-item">
-                            <a href="#" class='sidebar-link'>
+                            <a href="{{route('form')}}" class='sidebar-link'>
                                 <i class="bi bi-collection-fill"></i>
                                 <span>Form</span>
                             </a>
                         </li>
                         <li
                             class="sidebar-item">
-                            <a href="#" class='sidebar-link'>
+                            <a href="{{route('datatables')}}" class='sidebar-link'>
                                 <i class="bi bi-collection-fill"></i>
                                 <span>Datatables Jquery</span>
                             </a>
                         </li>
                         <li
                             class="sidebar-item">
-                            <a href="#" class='sidebar-link'>
+                            <a href="{{route('chartapexjs')}}" class='sidebar-link'>
                                 <i class="bi bi-collection-fill"></i>
                                 <span>Chart</span>
                             </a>
