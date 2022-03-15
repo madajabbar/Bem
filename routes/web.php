@@ -19,13 +19,13 @@ Route::prefix('admin')->group(function () {
         return view('example.dashboard');
     })->name('dashboard');
     Route::get('/form', [ExampleController::class, 'index'])->name('form');
+    Route::get('/formjquery', [ExampleController::class, 'viewFormJquery'])->name('form.jquery');
     Route::post('/form/store', [ExampleController::class, 'store'])->name('form.store');
+    Route::post('/form/store/jquery', [ExampleController::class, 'storejquery'])->name('form.jquery.store');
     Route::get('/quill', function () {
         return view('example.quill');
     })->name('quill');
-    Route::get('/datatables', function () {
-        return view('example.datatables');
-    })->name('datatables');
+    Route::get('/datatables',[ExampleController::class, 'view'])->name('datatables');
     Route::get('/chartapexjs', function () {
         return view('example.chart');
     })->name('chartapexjs');

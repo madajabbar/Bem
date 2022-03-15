@@ -53,16 +53,16 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item">
-                                    <a href="component-alert.html">Sub Menu</a>
-                                    <a href="component-alert.html">Sub Menu</a>
+                                    <a href="#">Sub Menu</a>
+                                    <a href="#">Sub Menu</a>
                                 </li>
                             </ul>
                         </li>
 
                         <li
-                            class="sidebar-item">
-                            <a href="{{route('quill')}}" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
+                        class="sidebar-item">
+                        <a href="{{route('quill')}}" class='sidebar-link'>
+                            <i class="bi bi-collection-fill"></i>
                                 <span>Quill Editor</span>
                             </a>
                         </li>
@@ -86,6 +86,19 @@
                                 <i class="bi bi-collection-fill"></i>
                                 <span>Chart</span>
                             </a>
+                        </li>
+                        <li
+                            class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
+                                <span>Form Jquery</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item">
+                                    <a href="#">Form Modal</a>
+                                    <a href="{{route('form.jquery')}}">Without Modal</a>
+                                </li>
+                            </ul>
                         </li>
                         <li
                             class="sidebar-item">
