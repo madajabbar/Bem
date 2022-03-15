@@ -141,7 +141,7 @@
         //         resolve(type);
         //     })
         // });
-        const inputElement = document.querySelector('input[type="file"]');
+        // const inputElement = document.querySelector('input[type="file"]');
             FilePond.setOptions({
                     server: {
                         url: '/upload',
