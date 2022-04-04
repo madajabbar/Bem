@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExampleController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +14,11 @@ use App\Http\Controllers\ExampleController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/', [HomeController::class, 'index'])->name('beranda');
+Route::get('/kegiatan',[HomeController::class, 'kegiatan'])->name('kegiatan');
+Route::get('/berita',[HomeController::class, 'berita'])->name('berita');
+Route::get('/galeri',[HomeController::class, 'galeri'])->name('galeri');
+Route::get('/struktur',[HomeController::class, 'struktur'])->name('struktur');
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
         return view('example.dashboard');
