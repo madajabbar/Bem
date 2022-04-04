@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\admin\BeritaController as BeritaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ Route::get('/kegiatan',[HomeController::class, 'kegiatan'])->name('kegiatan');
 Route::get('/berita',[HomeController::class, 'berita'])->name('berita');
 Route::get('/galeri',[HomeController::class, 'galeri'])->name('galeri');
 Route::get('/struktur',[HomeController::class, 'struktur'])->name('struktur');
+Route::get('/hubungi-kami',[HomeController::class, 'hubungi'])->name('hubungi');
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
         return view('example.dashboard');
@@ -34,6 +36,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/chartapexjs', function () {
         return view('example.chart');
     })->name('chartapexjs');
+
+
+    Route::resource('/berita', BeritaController::class);
 });
 
 Route::get('/dashboard', function () {

@@ -8,26 +8,26 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('beranda');
+        return view('frontend.beranda.index');
     }
     public function kegiatan()
     {
-        return view('kegiatan');
+        return view('frontend.kegiatan.index');
     }
     public function berita()
     {
-        return view('berita');
+        return view('frontend.berita.index');
     }
     public function galeri()
     {
-        return view('galeri');
-    }
-    public function admin()
-    {
-        return view('admin.dashboard');
+        return view('frontend.galeri.index');
     }
     public function struktur()
     {
-        return view('struktur');
+        return view('frontend.profil.index');
+    }
+    public function hubungi()
+    {
+        return view('frontend.hubungi_kami.index');
     }
 }
