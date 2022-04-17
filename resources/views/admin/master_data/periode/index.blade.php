@@ -35,26 +35,21 @@
                     </button>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table" id="table1">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Tag</th>
-                                    <th>Judul</th>
-                                    <th>Isi</th>
-                                    <th>Gambar</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
+                    <table class="table" id="table1">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Periode</th>
+                                <th>Dibuat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
-                @include('admin.berita.__form')
             </div>
         </div>
+
         <footer>
             <div class="footer clearfix mb-0 text-muted">
                 <div class="float-start">
@@ -67,18 +62,10 @@
             </div>
         </footer>
     </div>
+    @include('admin.master_data.periode.__form')
 @endsection
 
 @section('js')
-    <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
-    {{-- <script>
-    $(document).ready(function () {
-        $('isi').ckeditor();
-    });
-    </script>
-    <script type="text/javascript">
-        CKEDITOR.replace('isi');
-    </script> --}}
     <script src="{{ asset('assets/vendors/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/jquery-datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/jquery-datatables/custom.jquery.dataTables.bootstrap5.min.js') }}"></script>
@@ -90,47 +77,30 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
-
             });
 
             let jquery_datatable = $("#table1").DataTable({
                 processing: true,
                 serverSide: true,
-                searching: true,
-                responsive: true,
-                ajax: "{{ route('berita.index') }}",
+                ajax: "{{ route('periode.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
                     },
                     {
-                        data: 'tag',
-                        name: 'tag'
+                        data: 'periode',
+                        name: 'periode'
                     },
                     {
-                        data: 'judul',
-                        name: 'judul'
+                        data: 'created_at',
+                        name: 'created_at'
                     },
-                    {
-                        data: 'isi',
-                        name: 'isi'
-                    },
-                    {
-                        data: 'gambar',
-                        name: 'gambar'
-                    },
-                    {
-                        data: 'action',
-                        name: 'action'
-                    },
-
                 ]
             })
 
         });
-
         $('body').on('click', '.input', function() {
-            $('#exampleModalCenterTitle').html("Add Tag");
+            $('#exampleModalCenterTitle').html("Add Periode");
             $('#dataForm').trigger("reset");
         })
 
@@ -145,7 +115,7 @@
             if (check == true) {
                 $.ajax({
                     type: "DELETE",
-                    url: "{{ route('berita.store') }}" + '/' + data_id,
+                    url: "{{ route('periode.store') }}" + '/' + data_id,
                     success: function(data) {
                         reloadDatatable();
                         Swal.fire({
@@ -172,13 +142,10 @@
                 $('#saveBtn').val("edit");
                 $('#exampleModalCenter').modal('show');
                 $('#id').val(data.id);
-                $('#judul').val(data.judul);
-                $('#isi').val(data.isi);
-                $('#tag_id').val(data.tag_id);
+                $('#periode').val(data.periode);
             })
         });
     </script>
-
     <script type="text/javascript">
         $(function() {
             $.ajaxSetup({
@@ -197,7 +164,7 @@
                     cache: false,
                     contentType: false,
                     processData: false,
-                    url: "{{ route('berita.store') }}",
+                    url: "{{ route('periode.store') }}",
                     type: "POST",
                     dataType: 'json',
 

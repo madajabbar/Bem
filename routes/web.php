@@ -1,9 +1,16 @@
 <?php
 
+use App\Http\Controllers\admin\AnggotaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\admin\BeritaController as BeritaController;
+use App\Http\Controllers\admin\InformasiController;
+use App\Http\Controllers\admin\KalenderController;
+use App\Http\Controllers\admin\KegiatanController;
+use App\Http\Controllers\admin\PeriodeController;
+use App\Http\Controllers\admin\StrukturController;
+use App\Http\Controllers\admin\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +46,17 @@ Route::prefix('admin')->group(function () {
 
 
     Route::resource('/berita', BeritaController::class);
+    Route::resource('/periode', PeriodeController::class);
+    Route::resource('/tag', TagController::class);
+    Route::resource('/struktur',StrukturController::class);
+    Route::resource('/kegiatan',KegiatanController::class);
+    Route::resource('/anggota',AnggotaController::class);
+    Route::resource('/informasi', InformasiController::class);
+    Route::resource('/kalender', KalenderController::class);
+
+    Route::post('/kalender/create',[KalenderController::class, 'create']);
+    Route::post('/kalender/update',[KalenderController::class, 'update']);
+    Route::post('/kalender/delete',[KalenderController::class, 'destroy']);
 });
 
 Route::get('/dashboard', function () {

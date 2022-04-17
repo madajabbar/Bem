@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Periode;
+use App\Models\Struktur;
 use Illuminate\Http\Request;
-use App\Models\Berita;
-use App\Models\Tag;
 use Yajra\DataTables\Facades\DataTables;
 
-class BeritaController extends Controller
+class StrukturController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,23 +17,16 @@ class BeritaController extends Controller
      */
     public function index(Request $request)
     {
-        $data['title'] = 'BERITA';
-        $data['tag'] = Tag::all();
+        $data['title'] = 'STRUKTUR BEM UNTAN';
         if ($request->ajax()) {
-            $data = Berita::latest()->get();
+            $data = Struktur::latest()->get();
             return DataTables::of($data)
                     ->addIndexColumn()
-                    ->addColumn('tag', function($row){
-                        return $row->tag->name;
-                    })
-                    ->editColumn('isi', function($row){
-                        return substr($row->isi, 0, 200).'. . . . . . . . . . . . . . . .';
-                    })
                     ->editColumn('picture',function ($data){
                         return '<img src="asset(storage/'.$data->picture .')" alt="Girl in a jacket" width="500" height="600">';
                     })
-                    ->addColumn('gambar',function ($data){
-                        return 'gambar';
+                    ->editColumn('periode',function ($data){
+                        return $data->periode->periode;
                     })
                     ->addColumn('action', function ($content) {
                         return '
@@ -43,7 +36,8 @@ class BeritaController extends Controller
                     })
                     ->make(true);
         }
-        return view('admin.berita.index',compact(['data']));
+        $data['periode'] = Periode::orderBy('id', 'DESC')->get();
+        return view('admin.master_data.struktur.index',compact(['data']));
     }
 
     /**
@@ -51,15 +45,9 @@ class BeritaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        // $data = new Berita;
-        // $data->judul = $request->judul;
-        // $data->isi = $request->isi;
-        // $data->tag_id = $request->tag_id;
-        // $data->save();
-        // return redirect()->route('berita.index')->with('success','Berita berhasil ditambahkan');
-
+        //
     }
 
     /**
@@ -70,9 +58,12 @@ class BeritaController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->get('isi'));
-        Berita::updateOrCreate(['id' => $request->id]
-        ,['judul' => $request->judul, 'isi' => $request->isi, 'tag_id' => $request->tag_id]);
+        Struktur::updateOrCreate(['id' => $request->id],
+            [
+                'periode_id' => $request->periode_id,
+                'nama' => $request->nama,
+            ]);
+
         return response()->json(['success' => 'Berhasil disimpan']);
     }
 
@@ -95,8 +86,9 @@ class BeritaController extends Controller
      */
     public function edit($id)
     {
-        $data = Berita::find($id);
-        return response()->json($data);
+        $data = Struktur::find($id);
+
+        return $data;
     }
 
     /**
@@ -119,7 +111,7 @@ class BeritaController extends Controller
      */
     public function destroy($id)
     {
-        Berita::find($id)->delete();
+        Struktur::find($id)->delete();
         return response()->json(['success' => 'Berhasil dihapus']);
     }
 }

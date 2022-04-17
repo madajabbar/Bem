@@ -40,10 +40,8 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Tag</th>
-                                    <th>Judul</th>
-                                    <th>Isi</th>
-                                    <th>Gambar</th>
+                                    <th>Periode</th>
+                                    <th>Struktur</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -52,7 +50,7 @@
                         </table>
                     </div>
                 </div>
-                @include('admin.berita.__form')
+                @include('admin.master_data.struktur.__form')
             </div>
         </div>
         <footer>
@@ -70,15 +68,6 @@
 @endsection
 
 @section('js')
-    <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
-    {{-- <script>
-    $(document).ready(function () {
-        $('isi').ckeditor();
-    });
-    </script>
-    <script type="text/javascript">
-        CKEDITOR.replace('isi');
-    </script> --}}
     <script src="{{ asset('assets/vendors/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/jquery-datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/jquery-datatables/custom.jquery.dataTables.bootstrap5.min.js') }}"></script>
@@ -98,26 +87,18 @@
                 serverSide: true,
                 searching: true,
                 responsive: true,
-                ajax: "{{ route('berita.index') }}",
+                ajax: "{{ route('struktur.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
                     },
                     {
-                        data: 'tag',
-                        name: 'tag'
+                        data: 'periode',
+                        name: 'periode'
                     },
                     {
-                        data: 'judul',
-                        name: 'judul'
-                    },
-                    {
-                        data: 'isi',
-                        name: 'isi'
-                    },
-                    {
-                        data: 'gambar',
-                        name: 'gambar'
+                        data: 'nama',
+                        name: 'nama'
                     },
                     {
                         data: 'action',
@@ -130,7 +111,7 @@
         });
 
         $('body').on('click', '.input', function() {
-            $('#exampleModalCenterTitle').html("Add Tag");
+            $('#exampleModalCenterTitle').html("Add Struktur");
             $('#dataForm').trigger("reset");
         })
 
@@ -145,7 +126,7 @@
             if (check == true) {
                 $.ajax({
                     type: "DELETE",
-                    url: "{{ route('berita.store') }}" + '/' + data_id,
+                    url: "{{ route('struktur.store') }}" + '/' + data_id,
                     success: function(data) {
                         reloadDatatable();
                         Swal.fire({
@@ -167,14 +148,13 @@
 
         $('body').on('click', '.editProduct', function() {
             var data_id = $(this).data('id');
-            $.get("{{ route('berita.index') }}" + '/' + data_id + '/edit', function(data) {
-                $('#exampleModalCenterTitle').html("Edit Tag");
+            $.get("{{ route('struktur.index') }}" + '/' + data_id + '/edit', function(data) {
+                $('#exampleModalCenterTitle').html("Edit Struktur");
                 $('#saveBtn').val("edit");
                 $('#exampleModalCenter').modal('show');
                 $('#id').val(data.id);
-                $('#judul').val(data.judul);
-                $('#isi').val(data.isi);
-                $('#tag_id').val(data.tag_id);
+                $('#nama').val(data.nama);
+                $('#periode_id').val(data.periode_id);
             })
         });
     </script>
@@ -197,7 +177,7 @@
                     cache: false,
                     contentType: false,
                     processData: false,
-                    url: "{{ route('berita.store') }}",
+                    url: "{{ route('struktur.store') }}",
                     type: "POST",
                     dataType: 'json',
 
