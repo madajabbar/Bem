@@ -163,6 +163,7 @@
         $('body').on('click', '.editProduct', function() {
             var data_id = $(this).data('id');
             $.get("{{ route('berita.index') }}" + '/' + data_id + '/edit', function(data) {
+                $('#dataForm').trigger("reset");
                 $('#exampleModalCenterTitle').html("Edit Tag");
                 $('#saveBtn').val("edit");
                 $('#exampleModalCenter').modal('show');
@@ -213,6 +214,7 @@
                             icon: 'success',
                             title: 'Data berhasil dimasukan',
                         })
+                        window.location.reload()
                     },
                     error: function(data) {
                         console.log('Error:', data);

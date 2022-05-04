@@ -76,6 +76,8 @@ Route::prefix('admin')->group(function () {
     Route::post('/kalender/update',[KalenderController::class, 'update']);
     Route::post('/kalender/delete',[KalenderController::class, 'destroy']);
     Route::get('/berita/show/{id}', [BeritaController::class, 'show']);
+    Route::get('/berita/gambar/delete/{id}', [BeritaController::class, 'deleteGambar']);
+    Route::get('/kegiatan/show/{id}', [KegiatanController::class, 'show']);
 });
 
 Route::get('/dashboard', function () {

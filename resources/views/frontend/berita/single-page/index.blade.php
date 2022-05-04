@@ -2,8 +2,8 @@
 
 @section('content')
     {{-- start berita --}}
-    <section class=" border-b py-8">
-        <div class="container mx-auto flex flex-wrap pt-4 pb-12">
+    <section class="container border-b p-8">
+        <div class="container mx-auto flex flex-wrap pt-4 pb-12 bg-white rounded">
             <h1 class="animate-bounce w-full my-2 text-5xl font-bold leading-tight text-left text-gray-800">
                 {{$berita->judul}}
             </h1>

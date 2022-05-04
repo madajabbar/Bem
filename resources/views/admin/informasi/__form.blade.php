@@ -11,7 +11,7 @@
         <div class="form-group">
             <div class="form-line">
                 <label for="informasi">informasi</label>
-                <input type="text" name="informasi" id="informasi" class="form-control" placeholder="H105118" required>
+                <input type="text" name="informasi" id="informasi" class="form-control" placeholder="isi dari informasi" required>
             </div>
         </div>
         <div class="form-group">

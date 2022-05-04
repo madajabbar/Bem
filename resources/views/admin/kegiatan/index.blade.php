@@ -43,6 +43,7 @@
                                     <th>Judul</th>
                                     <th>Deskripsi</th>
                                     <th>Struktur</th>
+                                    <th>Gambar</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -106,6 +107,10 @@
                         name: 'struktur'
                     },
                     {
+                        data: 'gambar',
+                        name: 'gambar'
+                    },
+                    {
                         data: 'action',
                         name: 'action'
                     },
@@ -116,7 +121,7 @@
         });
 
         $('body').on('click', '.input', function() {
-            $('#exampleModalCenterTitle').html("Add Struktur");
+            $('#exampleModalCenterTitle').html("Add Kegiatan");
             $('#dataForm').trigger("reset");
         })
 
@@ -153,12 +158,13 @@
 
         $('body').on('click', '.editProduct', function() {
             var data_id = $(this).data('id');
-            $.get("{{ route('struktur.index') }}" + '/' + data_id + '/edit', function(data) {
-                $('#exampleModalCenterTitle').html("Edit Struktur");
+            $.get("{{ route('kegiatan.index') }}" + '/' + data_id + '/edit', function(data) {
+                $('#exampleModalCenterTitle').html("Edit Kegiatan");
                 $('#saveBtn').val("edit");
                 $('#exampleModalCenter').modal('show');
                 $('#id').val(data.id);
-                $('#nama').val(data.nama);
+                $('#judul').val(data.judul);
+                $('#deskripsi').val(data.deskripsi);
                 $('#periode_id').val(data.periode_id);
             })
         });

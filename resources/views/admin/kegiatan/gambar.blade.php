@@ -24,7 +24,9 @@
         </header>
 
         <div class="page-heading">
-           <a href="{{Route('berita.index')}}"> <h3> Berita {{ $title }}</h3></a>
+            <a href="{{ Route('kegiatan.index') }}">
+                <h3> Kegiatan {{ $title }}</h3>
+            </a>
         </div>
         <div class="page-content">
             <div class="card">
@@ -43,17 +45,18 @@
                             <tbody>
                                 @forelse ($data as $data)
                                     <tr>
-                                        <td>{{$loop->iteration}}</td>
-                                        <td><img src="{{ asset('storage/'.$data->link) }}" alt="" height="100" class=""></td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td><img src="{{ asset('storage/' . $data->link) }}" alt="" height="100"
+                                                class=""></td>
                                         <td>
-                                            <a href="{{url('admin/berita/gambar/delete/'.$data->id)}}" class="btn btn-danger btn-sm "><i class="bi bi-trash"></i>
+                                            <a href="#" class="btn btn-danger btn-sm "><i class="bi bi-trash"></i>
                                             </a>
                                         </td>
                                     </tr>
-                                    @empty
-                                    <center>
-                                        Data tidak ada
-                                    </center>
+                                @empty
+                                    <tr>
+                                        <center class="mx-auto">Tidak ada data</center>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>

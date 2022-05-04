@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Berita;
 use App\Models\Gambar;
 use App\Models\Tag;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
@@ -85,7 +86,7 @@ class BeritaController extends Controller
         $img = $data->gambar()->latest()->value('link');
         $path = null;
         if ($request->gambar) {
-            $name_picture = Str::random(6) . '.webp';
+            $name_picture = $request->judul . ' '. Str::random(6) .'.webp';
             $picture = Img::make($request->gambar)->resize(null, 1000, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
@@ -152,5 +153,12 @@ class BeritaController extends Controller
     {
         Berita::find($id)->delete();
         return response()->json(['success' => 'Berhasil dihapus']);
+    }
+    public function deleteGambar($id){
+        $data = Gambar::find($id);
+        // unlink('storage/berita'.$data->nama);
+        Gambar::where('id', $id)->delete();
+        File::delete($data->link);
+        return back()->with("success", "Image deleted successfully.");
     }
 }

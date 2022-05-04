@@ -1,7 +1,7 @@
 @extends('admin.modal')
 @section('form')
     <form id="dataForm" name="dataForm" enctype="multipart/form-data">
-        <input type="hidden" name="id" id="id">
+        <input type="" name="id" id="id">
         <div class="form-group">
             <div class="form-line">
                 <label for="judul">Judul</label>
@@ -22,6 +22,10 @@
                         <option value="{{ $data->id }}">{{ $data->nama }}</option>
                     @endforeach
                 </select>
+            </div>
+            <div class="form-line">
+                <label for="gambar">Gambar</label>
+                 <input type="file" id="gambar" name="gambar" class="form-control" accept="image/png, image/gif, image/jpeg">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">

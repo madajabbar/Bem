@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Gambar;
 use App\Models\Kegiatan;
 use App\Models\Struktur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image as Img;
+use Illuminate\Support\Facades\Storage;
 
 class KegiatanController extends Controller
 {
@@ -34,6 +39,11 @@ class KegiatanController extends Controller
                     ->editColumn('struktur',function ($data){
                         return $data->struktur->nama;
                     })
+                    ->addColumn('gambar', function ($data) {
+                        $gambar = 'berita.index';
+                        return '<a href="/admin/kegiatan/show/'.$data->id .'" class="edit btn btn-success btn-sm"><i class="bi bi-card-image"></i></a>';
+                    })
+                    ->rawColumns(['gambar','action'])
                     ->make(true);
         }
         $data['struktur'] = Struktur::orderBy('id', 'DESC')->get();
@@ -58,12 +68,29 @@ class KegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        Kegiatan::updateOrCreate(['id' => $request->kegiatan_id],
+        $data= Kegiatan::updateOrCreate(['id' => $request->id],
             [
                 'judul' => $request->judul,
                 'deskripsi' => $request->deskripsi,
                 'struktur_id' => $request->struktur_id,
             ]);
+            $img = $data->gambar()->latest()->value('link');
+            $path = null;
+            if ($request->gambar) {
+                $name_picture = $request->judul .Str::random(6) . '.webp';
+                $picture = Img::make($request->gambar)->resize(null, 1000, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })->encode('webp', 100);
+                $namePath = strtolower('Kegiatan');
+                $path = $namePath . "/" . $name_picture;
+                Storage::put("public/" . $path, $picture);
+
+                if ($path != null) {
+                    $data->gambar()->updateOrcreate(['name' => $data->judul, 'link' => $path]);
+                }
+
+            }
         return response()->json(['success' => 'Berhasil disimpan']);
     }
 
@@ -75,7 +102,12 @@ class KegiatanController extends Controller
      */
     public function show($id)
     {
-        //
+        $get = Kegiatan::find($id);
+        $data = $get->gambar;
+        // $data = Gambar::where('gambars_id',$id)->where('gambars_type', 'App\Models\Berita')->get();
+        // dd($data);
+        $title = $get->judul;
+        return view('admin.kegiatan.gambar', compact(['data','title']));
     }
 
     /**
@@ -86,7 +118,9 @@ class KegiatanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Kegiatan::find($id);
+
+        return $data;
     }
 
     /**
@@ -111,5 +145,12 @@ class KegiatanController extends Controller
     {
         Kegiatan::find($id)->delete();
         return response()->json(['success' => 'Berhasil dihapus']);
+    }
+    public function deleteGambar($id){
+        $data = Gambar::find($id);
+        // unlink('storage/berita'.$data->nama);
+        Gambar::where('id', $id)->delete();
+        File::delete($data->link);
+        return back()->with("success", "Image deleted successfully.");
     }
 }
