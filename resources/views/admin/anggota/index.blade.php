@@ -164,7 +164,7 @@
                 $('#exampleModalCenter').modal('show');
                 $('#id').val(data.id);
                 $('#nama').val(data.nama);
-                $('#periode_id').val(data.periode_id);
+                $('#nim').val(data.nim);
             })
         });
     </script>

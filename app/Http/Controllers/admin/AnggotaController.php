@@ -87,7 +87,8 @@ class AnggotaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Anggota::find($id);
+        return $data;
     }
 
     /**

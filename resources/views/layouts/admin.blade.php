@@ -57,26 +57,32 @@
                         </li>
                         <li class="sidebar-item">
                             <a href="{{Route('berita.index')}}" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
+                                <i class="bi bi-newspaper"></i>
                                 <span>Berita</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="{{Route('kegiatan.index')}}" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
+                                <i class="bi bi-check-all"></i>
                                 <span>Kegiatan</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="{{Route('informasi.index')}}" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
+                                <i class="bi bi-info"></i>
                                 <span>Informasi</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="{{Route('anggota.index')}}" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
+                                <i class="bi bi-person-fill"></i>
                                 <span>Anggota</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{Route('kalender.index')}}" class='sidebar-link'>
+                                <i class="bi bi-calendar-day"></i>
+                                <span>Kalender</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -129,6 +135,7 @@
         @yield('content')
     </div>
     @yield('js')
+
     <script src="{{ asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 

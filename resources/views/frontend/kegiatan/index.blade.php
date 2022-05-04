@@ -12,93 +12,42 @@
                 <div class="h-1 ml-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
             </div>
             <div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-3 ">
-
-                <div class="p-2 sm:p-10 text-center cursor-pointer">
+                @forelse($kegiatan as $data)
+                <div class="mx-auto p-2 sm:p-10 text-center cursor-pointer">
                     <div
                         class="py-16 max-w-sm rounded overflow-hidden shadow-lg hover:bg-white transition duration-500  bg-white">
                         <div class="space-y-10">
-                            <i class="fa fa-spa" style="font-size:48px;"></i>
-
                             <div class="px-6 py-4">
                                 <div class="space-y-5">
-                                    <div class="font-bold text-xl mb-2">Spa</div>
+                                    <div class="font-bold text-xl mb-2 text-gray-700">{{$data->judul}}</div>
                                     <p class="text-gray-700 text-base">
-                                        Todo tipo de masajes y técnicas
+                                        {{Str::limit($data->deskripsi, 100)}}
+                                    </p>
+                                    <p class="text-gray-700 text-base">
+                                        Kegiatan dari {{$data->struktur->nama}}
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="p-2 sm:p-10 text-center cursor-pointer">
+                @empty
+                <div class="mx-auto p-2 sm:p-10 text-center cursor-pointer">
                     <div
                         class="py-16 max-w-sm rounded overflow-hidden shadow-lg hover:bg-white transition duration-500  bg-white">
                         <div class="space-y-10">
-                            <i class="fa fa-spa" style="font-size:48px;"></i>
-
                             <div class="px-6 py-4">
                                 <div class="space-y-5">
-                                    <div class="font-bold text-xl mb-2">Spa</div>
+                                    <div class="font-bold text-xl mb-2"></div>
                                     <p class="text-gray-700 text-base">
-                                        Todo tipo de masajes y técnicas
+                                        Tidak Ada Kegiatan
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="p-2 sm:p-10 text-center cursor-pointer">
-                    <div
-                        class="py-16 max-w-sm rounded overflow-hidden shadow-lg hover:bg-white transition duration-500  bg-white">
-                        <div class="space-y-10">
-                            <i class="fa fa-spa" style="font-size:48px;"></i>
-
-                            <div class="px-6 py-4">
-                                <div class="space-y-5">
-                                    <div class="font-bold text-xl mb-2">Spa</div>
-                                    <p class="text-gray-700 text-base">
-                                        Todo tipo de masajes y técnicas
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-2 sm:p-10 text-center cursor-pointer">
-                    <div
-                        class="py-16 max-w-sm rounded overflow-hidden shadow-lg hover:bg-white transition duration-500  bg-white">
-                        <div class="space-y-10">
-                            <i class="fa fa-spa" style="font-size:48px;"></i>
-
-                            <div class="px-6 py-4">
-                                <div class="space-y-5">
-                                    <div class="font-bold text-xl mb-2">Spa</div>
-                                    <p class="text-gray-700 text-base">
-                                        Todo tipo de masajes y técnicas
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-2 sm:p-10 text-center cursor-pointer">
-                    <div
-                        class="py-16 max-w-sm rounded overflow-hidden shadow-lg hover:bg-white transition duration-500  bg-white">
-                        <div class="space-y-10">
-                            <i class="fa fa-spa" style="font-size:48px;"></i>
-
-                            <div class="px-6 py-4">
-                                <div class="space-y-5">
-                                    <div class="font-bold text-xl mb-2">Spa</div>
-                                    <p class="text-gray-700 text-base">
-                                        Todo tipo de masajes y técnicas
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                @endforelse
             </div>
         </div>
     </section>

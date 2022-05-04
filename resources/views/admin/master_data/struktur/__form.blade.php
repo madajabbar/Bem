@@ -1,7 +1,7 @@
 @extends('admin.modal')
 @section('form')
     <form id="dataForm" name="dataForm" enctype="multipart/form-data">
-        <input type="hidden" name="id" id="id">
+        <input type="text" name="id" id="id">
         <div class="form-group">
             <div class="form-line">
                 <label for="nama">Struktur</label>

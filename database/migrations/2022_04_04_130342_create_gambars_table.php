@@ -15,6 +15,10 @@ class CreateGambarsTable extends Migration
     {
         Schema::create('gambars', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('link');
+            $table->unsignedBigInteger('gambars_id');
+            $table->string('gambars_type')->nullable();
             $table->timestamps();
         });
     }

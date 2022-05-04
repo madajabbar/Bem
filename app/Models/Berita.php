@@ -15,4 +15,7 @@ class Berita extends Model
     {
         return $this->belongsTo(Tag::class);
     }
+    public function gambar(){
+        return $this->morphMany(Gambar::class, 'gambars');
+    }
 }

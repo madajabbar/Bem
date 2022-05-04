@@ -14,4 +14,8 @@ class Kegiatan extends Model
     public function struktur(){
         return $this->belongsTo(Struktur::class);
     }
+    public function gambar(){
+        return $this->morphMany(Gambar::class, 'gambars');
+    }
+
 }

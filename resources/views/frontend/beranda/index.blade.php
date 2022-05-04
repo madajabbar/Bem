@@ -221,143 +221,95 @@
                 <div class="w-full mb-4">
                     <div class="h-1 mx gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
                 </div>
+                @foreach($berita as $data)
                 <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
                     <div class="flex-1 bg-white rounded-md rounded-b-none overflow-hidden shadow ">
                         <a href="#" class="flex flex-wrap no-underline hover:no-underline shadow">
 
                             <p class="w-full text-center text-gray-600 text-xs md:text-sm px-6 font-semibold">
-                                Berita 1
+                                Berita {{$loop->iteration}}
                             </p>
+                            @forelse($data->gambar as $gambar)
+                            @if($loop->last)
+                            <img class="rounded-t-lg w-5/6 h-48 mx-auto" src="{{asset('storage/'.$gambar->link)}}" alt="tes" />
+                            @endif
+
+                            @empty
                             <img class="rounded-t-lg w-5/6 h-48 mx-auto" src="https://picsum.photos/200/300" alt="tes" />
+                            @endforelse
                             <div class="w-full font-bold text-center text-xl text-gray-800 px-6">
-                                Judul
+                                {{$data->judul}}
                             </div>
-                            <p class="text-gray-800 text-base px-6 mb-5">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc
-                                commodo posuere et sit amet ligula.
+                            <p class="text-gray-800 text-base px-6 mb-5" id="isi">
+                                Dibuat pada : {{$data->created_at->format('Y-m-d')}} <br>
+                                Tag : {{$data->tag->name}}
                             </p>
                         </a>
                     </div>
                     <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6 ">
                         <div class="flex items-center justify-center">
-                            <button
+                            <a href="{{ url('news/' . $data->id) }}"
                                 class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                                Action
-                            </button>
+                                lihat berita
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-                    <div class="flex-1 bg-white rounded-md rounded-b-none overflow-hidden shadow ">
-                        <a href="#" class="flex flex-wrap no-underline hover:no-underline">
-                            <p class="w-full text-center text-gray-600 text-xs md:text-sm px-6  font-semibold">
-                                Berita 2
-                            </p>
-                            <img class="rounded-t-lg w-5/6 h-48 mx-auto" src="https://picsum.photos/200/300" alt="tes" />
-                            <div class="w-full text-center font-bold text-xl text-gray-800 px-6">
-                                Judul
-                            </div>
-                            <p class="text-gray-800 text-base px-6 mb-5">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc
-                                commodo posuere et sit amet ligula.
-                            </p>
-                        </a>
-                    </div>
-                    <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6 ">
-                        <div class="flex items-center justify-center">
-                            <button
-                                class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                                Action
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-                    <div class="flex-1 bg-white rounded-md rounded-b-none overflow-hidden shadow ">
-                        <a href="#" class="flex flex-wrap no-underline hover:no-underline">
-                            <p class="w-full text-center text-gray-600 text-xs md:text-sm px-6 font-semibold">
-                                Berita 3
-                            </p>
-                            <img class="rounded-t-lg w-5/6 h-48 mx-auto" src="https://picsum.photos/200/300" alt="tes" />
-                            <div class="w-full text-center font-bold text-xl text-gray-800 px-6">
-                                Judul
-                            </div>
-                            <p class="text-gray-800 text-base px-6 mb-5">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc
-                                commodo posuere et sit amet ligula.
-                            </p>
-                        </a>
-                    </div>
-                    <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6 ">
-                        <div class="flex items-center justify-center">
-                            <button
-                                class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                                Action
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </section>
         {{-- end berita --}}
-
+        <div class="w-full mb-4">
+            <div class="h-1 ml-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+        </div>
         {{-- start kegiatan --}}
         <section class=" border-b py-8">
             <div class="container mx-auto flex flex-wrap pt-4 pb-12">
-                <h1 class="animate-bounce w-full my-2 text-5xl font-bold leading-tight text-left text-gray-800">
-                    Kegiatan
+                <h1 class="animate-bounce w-full my-2 text-5xl font-bold leading-tight text-right text-gray-800">
+                    Kegiatan Terbaru
                 </h1>
                 <div class="w-full mb-4">
-                    <div class="h-1 ml-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+                    <div class="h-1 mx gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
                 </div>
+                @foreach($kegiatan as $data)
                 <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
                     <div class="flex-1 bg-white rounded-md rounded-b-none overflow-hidden shadow ">
-                        <a href="#"
-                            class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                            <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                                src="{{ asset('images/Batman.jpg') }}" alt="">
-                            <div class="flex flex-col justify-between p-4 leading-normal">
-                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Judul
-                                    Kegiatan 1</h5>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest
-                                    enterprise technology acquisitions of 2021 so far, in reverse chronological order.
-                                </p>
+                        <a href="#" class="flex flex-wrap no-underline hover:no-underline shadow">
+
+                            <p class="w-full text-center text-gray-600 text-xs md:text-sm px-6 font-semibold">
+                                Kegiatan {{$loop->iteration}}
+                            </p>
+                                @forelse($data->gambar as $gambar)
+                                    @if($loop->last)
+                                        <img class="rounded-t-lg w-5/6 h-48 mx-auto" src="{{asset('storage/'.$gambar->link)}}" alt="tes" />
+                                    @endif
+                                    @empty
+                                        <img class="rounded-t-lg w-5/6 h-48 mx-auto" src="https://picsum.photos/200/300" alt="tes" />
+                                @endforelse
+                            <div class="w-full font-bold text-center text-xl text-gray-800 px-6">
+                                {{$data->judul}}
                             </div>
+                            <p class="text-gray-800 text-base px-6 mb-5">
+                                Dibuat pada : {{$data->created_at->format('Y-m-d')}} <br>
+                                Tag : {{$data->struktur->nama}}
+                            </p>
                         </a>
                     </div>
-                </div>
-                <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-                    <div class="flex-1 bg-white rounded-md rounded-b-none overflow-hidden shadow ">
-                        <a href="#"
-                            class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                            <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                                src="{{ asset('images/Batman.jpg') }}" alt="">
-                            <div class="flex flex-col justify-between p-4 leading-normal">
-                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Judul
-                                    Kegiatan 1</h5>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest
-                                    enterprise technology acquisitions of 2021 so far, in reverse chronological order.
-                                </p>
-                            </div>
-                        </a>
+                    <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6 ">
+                        <div class="flex items-center justify-center">
+                            <a href="{{ url('activity/' . $data->id) }}"
+                                class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                                lihat
+                            </a>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <p class="text-gray-800 text-base px-6 mb-5">
+                                {{Str::limit($data->struktur_id, 100, $end='.......')}}
+                            </p>
+                        </div>
                     </div>
                 </div>
-                <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-                    <div class="flex-1 bg-white rounded-md rounded-b-none overflow-hidden shadow ">
-                        <a href="#"
-                            class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                            <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                                src="{{ asset('images/Batman.jpg') }}" alt="">
-                            <div class="flex flex-col justify-between p-4 leading-normal">
-                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Judul
-                                    Kegiatan 1</h5>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest
-                                    enterprise technology acquisitions of 2021 so far, in reverse chronological order.
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </section>
         {{-- end kegiatan --}}

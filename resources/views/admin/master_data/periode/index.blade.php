@@ -41,6 +41,7 @@
                                 <th>No</th>
                                 <th>Periode</th>
                                 <th>Dibuat</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -95,6 +96,10 @@
                         data: 'created_at',
                         name: 'created_at'
                     },
+                    {
+                        data: 'action',
+                        name: 'action'
+                    }
                 ]
             })
 
@@ -137,8 +142,8 @@
 
         $('body').on('click', '.editProduct', function() {
             var data_id = $(this).data('id');
-            $.get("{{ route('berita.index') }}" + '/' + data_id + '/edit', function(data) {
-                $('#exampleModalCenterTitle').html("Edit Tag");
+            $.get("{{ route('periode.index') }}" + '/' + data_id + '/edit', function(data) {
+                $('#exampleModalCenterTitle').html("Edit Periode");
                 $('#saveBtn').val("edit");
                 $('#exampleModalCenter').modal('show');
                 $('#id').val(data.id);

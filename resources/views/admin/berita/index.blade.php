@@ -70,15 +70,10 @@
 @endsection
 
 @section('js')
-    <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
-    {{-- <script>
-    $(document).ready(function () {
-        $('isi').ckeditor();
-    });
+    <script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'isi' );
     </script>
-    <script type="text/javascript">
-        CKEDITOR.replace('isi');
-    </script> --}}
     <script src="{{ asset('assets/vendors/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/jquery-datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/jquery-datatables/custom.jquery.dataTables.bootstrap5.min.js') }}"></script>
@@ -173,8 +168,9 @@
                 $('#exampleModalCenter').modal('show');
                 $('#id').val(data.id);
                 $('#judul').val(data.judul);
-                $('#isi').val(data.isi);
+                $('#isi').val(CKEDITOR.instances['content'].setData(data.isi));
                 $('#tag_id').val(data.tag_id);
+
             })
         });
     </script>
@@ -189,8 +185,13 @@
             $('#saveBtn').click(function(e) {
                 e.preventDefault();
                 $(this).html('Sending..');
+                // var content = CKEDITOR.instances['content'].getData();
+                // console.log(content)
                 var myform = document.getElementById('dataForm');
+                // myform = myform.append('content')
                 var formData = new FormData(myform);
+                formData.append('isi', CKEDITOR.instances['content'].getData());
+                // console.log(myform);
 
                 $.ajax({
                     data: formData,
@@ -207,7 +208,7 @@
                         $('#dataForm').trigger("reset");
                         $('#ajaxModel').modal('hide');
                         $('#saveBtn').html('success');
-
+                        CKEDITOR.instances['content'].destroy();
                         Swal.fire({
                             icon: 'success',
                             title: 'Data berhasil dimasukan',

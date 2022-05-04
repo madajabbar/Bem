@@ -8,8 +8,8 @@
                 <input type="text" name="judul" id="judul" class="form-control" placeholder="judul">
             </div>
             <div class="form-line">
-                <label for="my-editor">isi</label>
-                <textarea class="my-editor form-control" id="isi" cols="30" rows="10" name="isi"></textarea>
+                <label for="content">isi</label>
+                <textarea class="content form-control" id="content" cols="30" rows="10" name="isi"></textarea>
                 {{-- <textarea id="isi" name="isi" id="" cols="30" rows="10"></textarea> --}}
             </div>
 
@@ -21,6 +21,10 @@
                     @endforeach
 
                 </select>
+            </div>
+            <div class="form-line">
+                <label for="gambar">Gambar</label>
+                 <input type="file" id="gambar" name="gambar" class="form-control">
             </div>
         </div>
         <div class="modal-footer">
