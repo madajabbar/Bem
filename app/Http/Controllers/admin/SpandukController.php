@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Informasi;
+use App\Models\Spanduk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image as Img;
 
-class InformasiController extends Controller
+class SpandukController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,15 +20,16 @@ class InformasiController extends Controller
      */
     public function index(Request $request)
     {
-        $data['title'] = 'INFORMASI BEM UNTAN';
+        $data['title'] = 'Spanduk';
         if ($request->ajax()) {
-            $data = Informasi::latest()->get();
+            $data = Spanduk::latest()->get();
             return DataTables::of($data)
                     ->addIndexColumn()
-                    ->editColumn('file',function ($data){
-                        foreach ($data->gambar as $data){
-                            $link = asset('storage/'.$data->link);
-                            return '<a href="'.$link .'" class="edit btn btn-success btn-sm" download><i class="bi bi-card-image"></i></a>';
+                    ->editColumn('gambar',function ($data){
+                        foreach($data->gambar as $data){
+                            $gambar = asset('storage/'.$data->link);
+                            // dd($gambar);
+                            return '<img src="'.$gambar.'" alt="Girl in a jacket" width="200" height="200">';
                         }
                     })
                     ->addColumn('action', function ($content) {
@@ -36,11 +38,10 @@ class InformasiController extends Controller
                                  <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $content->id . '" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct"><i class="fa fa-trash"></i></a>
                         ';
                     })
-                    ->rawColumns(['file','action'])
+                    ->rawColumns(['gambar','action'])
                     ->make(true);
         }
-        // $data['struktur'] = Struktur::orderBy('id', 'DESC')->get();
-        return view('admin.informasi.index',compact(['data']));
+        return view('admin.master_data.spanduk.index',compact(['data']));
     }
 
     /**
@@ -61,26 +62,27 @@ class InformasiController extends Controller
      */
     public function store(Request $request)
     {
-        $data = Informasi::updateOrCreate(['id' => $request->id],
-        [
-            'judul' => $request->judul,
-            'informasi' => $request->informasi,
-            // 'file' => $request->file,
-        ]);
+        // $request->validate(['spanduk'=>'required']);
+        $data = Spanduk::updateOrCreate(
+            ['id' => $request->id],
+            ['name' => $request->name]
+        );
+        // $img = $data->gambar()->latest()->value('link');
         $path = null;
-        if ($request->file) {
-            $extension = $request->file->getClientOriginalExtension();
-            $name_picture = Str::slug($data->judul) .$extension;
-            $namePath = strtolower('Informasi');
-            $path = public_path().'/storage/informasi/';
-            $dir = $namePath .'/' . $name_picture;
-            $file = $request->file('file');
-            $file->move($path, $name_picture);
+        if ($request->spanduk) {
+            $name_picture = Str::slug($data->name) .'.webp';
+            $picture = Img::make($request->spanduk)->resize(null, 1000, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->encode('webp', 100);
+            $namePath = strtolower('Spanduk');
+            $path = $namePath . "/" . $name_picture;
+            Storage::put("public/" . $path, $picture);
             if ($path != null) {
-                $data->gambar()->updateOrcreate(['name' => $name_picture, 'link' => $dir]);
+                $data->gambar()->updateOrcreate(['name' => $name_picture, 'link' => $path]);
             }
         }
-        return response()->json(['success'=>'Informasi berhasil ditambahkan']);
+        return response()->json(['success' => 'Berhasil disimpan']);
     }
 
     /**
@@ -102,7 +104,7 @@ class InformasiController extends Controller
      */
     public function edit($id)
     {
-        $data = Informasi::findOrFail($id);
+        $data = Spanduk::find($id);
 
         return response()->json($data);
     }
@@ -127,8 +129,14 @@ class InformasiController extends Controller
      */
     public function destroy($id)
     {
-        Informasi::find($id)->delete();
+        $data = Spanduk::find($id);
 
-        return response()->json('success');
+        foreach($data->gambar as $data){
+            $path = $data->link;
+            Storage::delete("public/" . $path);
+            // $path->delete();
+        }
+        $data->delete();
+        return response()->json(['success' => 'Berhasil dihapus']);
     }
 }

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\main;
 
 use App\Http\Controllers\Controller;
 use App\Models\Berita;
+use App\Models\Informasi;
 use App\Models\Kegiatan;
+use App\Models\Spanduk;
 use Illuminate\Http\Request;
-
+use Shetabit\Visitor\Traits\Visitable;
 class BerandaController extends Controller
 {
     /**
@@ -18,6 +20,9 @@ class BerandaController extends Controller
     {
         $data['berita'] = Berita::latest()->take(3)->get();
         $data['kegiatan'] = Kegiatan::latest()->take(3)->get();
+        $data['informasi'] = Informasi::latest()->take(3)->get();
+        $data['spanduk'] = Spanduk::latest()->take(5)->get();
+        visitor()->visit();
         return view('frontend.beranda.index',$data);
     }
 

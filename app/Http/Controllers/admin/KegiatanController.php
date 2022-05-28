@@ -27,9 +27,6 @@ class KegiatanController extends Controller
             $data = Kegiatan::latest()->get();
             return DataTables::of($data)
                     ->addIndexColumn()
-                    ->editColumn('picture',function ($data){
-                        return '<img src="asset(storage/'.$data->picture .')" alt="Girl in a jacket" width="500" height="600">';
-                    })
                     ->addColumn('action', function ($content) {
                         return '
                         <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $content->id . '" data-original-title="Edit" class="edit btn btn-info btn-sm editProduct"><i class="fa fa-pencil-square-o"></i></a>

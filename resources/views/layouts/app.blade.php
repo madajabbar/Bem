@@ -15,6 +15,9 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+
+        {{-- icon --}}
+        <link rel="shortcut icon" href="{{ asset('images/logo_kbm.ico') }}" type="image/x-icon">
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">

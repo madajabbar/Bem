@@ -7,35 +7,15 @@
 
                 <!-- Carousel wrapper -->
                 <div class="overflow-hidden relative h-64 rounded-lg sm:0 xl:h-80 2xl:h-96">
-
                     <!-- Item 1 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item="">
-                        <img src="{{ asset('images/carousel.jpg') }}"
-                            class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item="">
-                        <img src="{{ asset('images/carousel.jpg') }}"
-                            class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
-                    </div>
-
-                    <!-- Item 3 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-                        <img src="{{ asset('images/carousel.jpg') }}"
-                            class="block relative top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
-                    </div>
-
-                    <!-- Item 4 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item="">
-                        <img src="{{ asset('images/carousel.jpg') }}"
-                            class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
-                    </div>
-
-                    <!-- Item 5 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item="">
-                        {{-- <img src="{{asset('images/carousel.jpg')}}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="..."> --}}
-                    </div>
+                    @foreach ($spanduk as $data)
+                        @foreach ($data->gambar as $data)
+                            <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
+                                <img src="{{ asset('storage/'.$data->link) }}"
+                                    class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+                            </div>
+                        @endforeach
+                    @endforeach
                 </div>
                 <!-- Slider controls -->
                 <button type="button"

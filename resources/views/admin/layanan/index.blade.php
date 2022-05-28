@@ -38,7 +38,10 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Periode</th>
+                                <th>Nama Lengkap</th>
+                                <th>Email</th>
+                                <th>Nomor Hp</th>
+                                <th>Pesan</th>
                                 <th>Dibuat</th>
                                 <th>Action</th>
                             </tr>
@@ -49,7 +52,7 @@
                 </div>
             </div>
         </div>
-    @include('admin.master_data.periode.__form')
+    @include('admin.layanan.__form')
 @endsection
 
 @section('js')
@@ -69,14 +72,26 @@
             let jquery_datatable = $("#table1").DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('periode.index') }}",
+                ajax: "{{ route('layananadmin.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
                     },
                     {
-                        data: 'periode',
-                        name: 'periode'
+                        data: 'nama',
+                        name: 'nama'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
+                    },
+                    {
+                        data: 'no_hp',
+                        name: 'no_hp'
+                    },
+                    {
+                        data: 'pesan',
+                        name: 'pesan'
                     },
                     {
                         data: 'created_at',

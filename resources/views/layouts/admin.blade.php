@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-icons/bootstrap-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.svg') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('images/logo_kbm.ico') }}" type="image/x-icon">
 </head>
 
 <body>
@@ -26,7 +26,8 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <a href="index.html"><img src="{{ asset('images/logo_kbm.png') }}" alt="Logo" srcset=""></a>
+                            <a href="index.html"><img src="{{ asset('images/logo_kbm.png') }}" alt="Logo"
+                                    srcset=""></a>
                         </div>
                         <div class="toggler">
                             <a href="#" class="sidebar-hide d-xl-none d-block">Admin BEM</a>
@@ -37,7 +38,7 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
                         <li class="sidebar-item active ">
-                            <a href="{{ route('dashboard') }}" class='sidebar-link'>
+                            <a href="{{ route('dashboard.index') }}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -49,82 +50,59 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item">
-                                    <a href="{{Route('periode.index')}}">Periode</a>
-                                    <a href="{{Route('tag.index')}}">Tag</a>
-                                    <a href="{{Route('struktur.index')}}">Struktur</a>
+                                    <a href="{{ Route('periode.index') }}">Periode</a>
+                                    <a href="{{ Route('tag.index') }}">Tag</a>
+                                    <a href="{{ Route('struktur.index') }}">Struktur</a>
+                                    <a href="{{ Route('spanduk.index') }}">Spanduk</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{Route('berita.index')}}" class='sidebar-link'>
+                            <a href="{{ Route('berita.index') }}" class='sidebar-link'>
                                 <i class="bi bi-newspaper"></i>
                                 <span>Berita</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{Route('kegiatan.index')}}" class='sidebar-link'>
+                            <a href="{{ Route('kegiatan.index') }}" class='sidebar-link'>
                                 <i class="bi bi-check-all"></i>
                                 <span>Kegiatan</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{Route('informasi.index')}}" class='sidebar-link'>
+                            <a href="{{ Route('informasi.index') }}" class='sidebar-link'>
                                 <i class="bi bi-info"></i>
                                 <span>Informasi</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{Route('anggota.index')}}" class='sidebar-link'>
+                            <a href="{{ Route('anggota.index') }}" class='sidebar-link'>
                                 <i class="bi bi-person-fill"></i>
                                 <span>Anggota</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{Route('kalender.index')}}" class='sidebar-link'>
+                            <a href="{{ Route('kalender.index') }}" class='sidebar-link'>
                                 <i class="bi bi-calendar-day"></i>
                                 <span>Kalender</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{ route('quill') }}" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
-                                <span>Quill Editor</span>
+                            <a href="{{ Route('layananadmin.index') }}" class='sidebar-link'>
+                                <i class="bi bi-mailbox"></i>
+                                <span>Layanan Mahasiswa</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{ route('form') }}" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
-                                <span>Form</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="{{ route('datatables') }}" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
-                                <span>Datatables Jquery</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="{{ route('chartapexjs') }}" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
-                                <span>Chart</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  has-sub">
-                            <a href="#" class='sidebar-link'>
-                                <i class="bi bi-stack"></i>
-                                <span>Form Jquery</span>
-                            </a>
-                            <ul class="submenu ">
-                                <li class="submenu-item">
-                                    <a href="#">Form Modal</a>
-                                    <a href="{{ route('form.jquery') }}">Without Modal</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="{{ asset('dist/index.html') }}" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
-                                <span>Documentation</span>
+                            <a href="" class="sidebar-link">
+                                <i class="bi bi-door-closed"></i>
+                                <form action="{{ Route('logout') }}" method="post">
+                                    @csrf
+                                    <button class='btn' type="submit">
+                                        logout
+                                    </button>
+
+                                </form>
                             </a>
                         </li>
                     </ul>
@@ -132,7 +110,20 @@
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
-        @yield('content')
+        <div id="main">
+            @yield('content')
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>2021 &copy; Mazer</p>
+                    </div>
+                    <div class="float-end">
+                        <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
+                                href="http://ahmadsaugi.com">A. Saugi</a></p>
+                    </div>
+                </div>
+            </footer>
+        </div>
     </div>
     @yield('js')
 

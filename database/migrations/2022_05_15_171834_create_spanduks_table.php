@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHubungiKamisTable extends Migration
+class CreateSpanduksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateHubungiKamisTable extends Migration
      */
     public function up()
     {
-        Schema::create('hubungi_kamis', function (Blueprint $table) {
+        Schema::create('spanduks', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('email');
-            $table->string('no_hp');
-            $table->text('pesan');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateHubungiKamisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hubungi_kamis');
+        Schema::dropIfExists('spanduks');
     }
 }

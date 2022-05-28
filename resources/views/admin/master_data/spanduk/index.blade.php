@@ -16,30 +16,32 @@
     </style>
 @endsection
 @section('content')
-        <header class="mb-3">
-            <a href="#" class="burger-btn d-block d-xl-none">
-                <i class="bi bi-justify fs-3"></i>
-            </a>
-        </header>
+    <header class="mb-3">
+        <a href="#" class="burger-btn d-block d-xl-none">
+            <i class="bi bi-justify fs-3"></i>
+        </a>
+    </header>
 
-        <div class="page-heading">
-            <h3>{{ $data['title'] }}</h3>
-        </div>
-        <div class="page-content">
-            <div class="card">
-                <div class="card-header">
-                    <button type="button" class="input btn btn-outline-primary block" data-bs-toggle="modal"
-                        data-bs-target="#exampleModalCenter">
-                        Input Data
-                    </button>
-                </div>
-                <div class="card-body">
+    <div class="page-heading">
+        <h3>{{ $data['title'] }}</h3>
+    </div>
+    <div class="page-content">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="input btn btn-outline-primary block" data-bs-toggle="modal"
+                    data-bs-target="#exampleModalCenter">
+                    Input Data
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
                     <table class="table" id="table1">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Periode</th>
-                                <th>Dibuat</th>
+                                <th>Nama</th>
+                                <th>Di Upload</th>
+                                <th>Gambar</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -48,8 +50,9 @@
                     </table>
                 </div>
             </div>
+            @include('admin.master_data.spanduk.__form')
         </div>
-    @include('admin.master_data.periode.__form')
+    </div>
 @endsection
 
 @section('js')
@@ -64,34 +67,43 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
+
             });
 
             let jquery_datatable = $("#table1").DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('periode.index') }}",
+                searching: true,
+                responsive: true,
+                ajax: "{{ route('spanduk.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
                     },
                     {
-                        data: 'periode',
-                        name: 'periode'
+                        data: 'name',
+                        name: 'name'
                     },
                     {
                         data: 'created_at',
-                        name: 'created_at'
+                        name: 'created_at',
+                    },
+                    {
+                        data: 'gambar',
+                        name: 'gambar',
                     },
                     {
                         data: 'action',
                         name: 'action'
-                    }
+                    },
+
                 ]
             })
 
         });
+
         $('body').on('click', '.input', function() {
-            $('#exampleModalCenterTitle').html("Add Periode");
+            $('#exampleModalCenterTitle').html("Add spanduk");
             $('#dataForm').trigger("reset");
         })
 
@@ -106,7 +118,7 @@
             if (check == true) {
                 $.ajax({
                     type: "DELETE",
-                    url: "{{ route('periode.store') }}" + '/' + data_id,
+                    url: "{{ route('spanduk.store') }}" + '/' + data_id,
                     success: function(data) {
                         reloadDatatable();
                         Swal.fire({
@@ -128,15 +140,17 @@
 
         $('body').on('click', '.editProduct', function() {
             var data_id = $(this).data('id');
-            $.get("{{ route('periode.index') }}" + '/' + data_id + '/edit', function(data) {
-                $('#exampleModalCenterTitle').html("Edit Periode");
+            $.get("{{ route('spanduk.index') }}" + '/' + data_id + '/edit', function(data) {
+                $('#exampleModalCenterTitle').html("Edit spanduk");
                 $('#saveBtn').val("edit");
                 $('#exampleModalCenter').modal('show');
                 $('#id').val(data.id);
-                $('#periode').val(data.periode);
+                $('#nama').val(data.nama);
+                $('#periode_id').val(data.periode_id);
             })
         });
     </script>
+
     <script type="text/javascript">
         $(function() {
             $.ajaxSetup({
@@ -155,7 +169,7 @@
                     cache: false,
                     contentType: false,
                     processData: false,
-                    url: "{{ route('periode.store') }}",
+                    url: "{{ route('spanduk.store') }}",
                     type: "POST",
                     dataType: 'json',
 
