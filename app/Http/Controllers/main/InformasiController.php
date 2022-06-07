@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\main;
 
 use App\Http\Controllers\Controller;
+use App\Models\Informasi;
 use Illuminate\Http\Request;
 
 class InformasiController extends Controller
@@ -14,7 +15,8 @@ class InformasiController extends Controller
      */
     public function index()
     {
-        //
+        $data['informasi'] = Informasi::all();
+        return view('frontend.informasi.index',$data);
     }
 
     /**

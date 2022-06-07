@@ -24,7 +24,7 @@
             </div>
             <div class="form-line">
                 <label for="gambar">Gambar</label>
-                 <input type="file" id="gambar" name="gambar" class="form-control">
+                 <input type="file" id="gambar" name="gambar" class="form-control" accept="image/png, image/gif, image/jpeg">
             </div>
         </div>
         <div class="modal-footer">

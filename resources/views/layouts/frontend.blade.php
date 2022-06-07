@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="icon" href="{{asset('images/logo_kbm.ico')}}">
+    <link rel="icon" href="{{ asset('images/logo_kbm.ico') }}">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <title>BEM UNTAN</title>
     @yield('css')
@@ -16,11 +16,13 @@
         .gradient {
             background: linear-gradient(90deg, #6ba6e6 0%, #04e4dc 100%);
         }
+
     </style>
     <style>
         .border-b-1 {
             border-bottom-width: 1px;
         }
+
         .border-l-1 {
             border-left-width: 1px;
         }
@@ -28,23 +30,32 @@
         hover\:border-none:hover {
             border-style: none;
         }
+
         #sidebar {
             transition: ease-in-out all .3s;
             z-index: 9999;
         }
+
         #sidebar span {
             opacity: 0;
             position: absolute;
             transition: ease-in-out all .1s;
         }
+
         #sidebar:hover {
             width: 150px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             /*shadow-2xl*/
         }
+
         #sidebar:hover span {
             opacity: 1;
         }
+
+        body {
+            background-image: background-image: url("images/Batman.jpg");
+        }
+
     </style>
 </head>
 

@@ -14,22 +14,25 @@
             <div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-3 ">
                 @forelse($kegiatan as $data)
                 <div class="mx-auto p-2 sm:p-10 text-center cursor-pointer">
-                    <div
-                        class="py-16 max-w-sm rounded overflow-hidden shadow-lg hover:bg-white transition duration-500  bg-white">
-                        <div class="space-y-10">
-                            <div class="px-6 py-4">
-                                <div class="space-y-5">
-                                    <div class="font-bold text-xl mb-2 text-gray-700">{{$data->judul}}</div>
-                                    <p class="text-gray-700 text-base">
-                                        {{Str::limit($data->deskripsi, 100)}}
-                                    </p>
-                                    <p class="text-gray-700 text-base">
-                                        Kegiatan dari {{$data->struktur->nama}}
-                                    </p>
+                    <a href="{{ url('activity/' . $data->id) }}">
+                        <div
+                            class="py-16 max-w-sm rounded overflow-hidden shadow-lg hover:bg-white transition duration-500  bg-white">
+                            <div class="space-y-10">
+                                <div class="px-6 py-4">
+                                    <div class="space-y-5">
+                                        <div class="font-bold text-xl mb-2 text-gray-700">{{$data->judul}}</div>
+                                        <p class="text-gray-700 text-base">
+                                            {{Str::limit($data->deskripsi, 100)}}
+                                        </p>
+                                        <p class="text-gray-700 text-base">
+                                            Kegiatan dari {{$data->struktur->nama}}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
+                    </a>
                 </div>
                 @empty
                 <div class="mx-auto p-2 sm:p-10 text-center cursor-pointer">

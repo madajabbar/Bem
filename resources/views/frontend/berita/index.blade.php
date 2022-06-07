@@ -31,7 +31,9 @@
                                 {{ $data->judul }}
                             </div>
                             <p class="text-gray-800 text-base px-6 mb-5">
-                                {!! Str::limit($data->isi, 50, $end = '.......') !!}
+                               tag : {{ $data->tag->name}}
+                               <br>
+                               dibuat : {{ $data->created_at->format('d-m-Y') }}
                             </p>
                         </a>
                     </div>

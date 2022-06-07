@@ -48,7 +48,10 @@ class KegiatanController extends Controller
      */
     public function show($id)
     {
-        //
+        // dd($id);
+        $data['kegiatan'] = Kegiatan::where('id',$id)->first();
+
+        return view('frontend.kegiatan.single-page.index', $data);
     }
 
     /**

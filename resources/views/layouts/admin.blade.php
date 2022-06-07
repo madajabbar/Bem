@@ -1,3 +1,7 @@
+{{-- NOTE FONT CAMAR FOR TITLE --}}
+{{-- FONT CENTURY GOTHIC FOR BODY --}}
+
+
 <!DOCTYPE html>
 <html lang="en">
 

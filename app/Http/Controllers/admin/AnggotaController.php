@@ -7,7 +7,7 @@ use App\Models\Anggota;
 use App\Models\Struktur;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
-
+use Illuminate\Support\Str;
 class AnggotaController extends Controller
 {
     /**
@@ -28,12 +28,19 @@ class AnggotaController extends Controller
                     ->editColumn('struktur',function ($data){
                         return $data->struktur->nama;
                     })
+                    ->addColumn('foto',function ($data){
+                        foreach ($data->gambar as $data){
+                            $gambar = asset('storage/'.$data->link);
+                            return '<img src="'.$gambar.'" alt="'.$gambar.'" width="200" height="300">';
+                        }
+                    })
                     ->addColumn('action', function ($content) {
                         return '
                         <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $content->id . '" data-original-title="Edit" class="edit btn btn-info btn-sm editProduct"><i class="fa fa-pencil-square-o"></i></a>
                                  <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $content->id . '" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct"><i class="fa fa-trash"></i></a>
                         ';
                     })
+                    ->rawColumns(['foto','action'])
                     ->make(true);
         }
         $data['struktur'] = Struktur::orderBy('id', 'DESC')->get();
@@ -58,14 +65,29 @@ class AnggotaController extends Controller
      */
     public function store(Request $request)
     {
-        Anggota::updateOrCreate(['id' => $request->id],
+        if($request->gambar){
+        $data= Anggota::updateOrCreate(['id' => $request->id],
         [
             'nama' => $request->nama,
             'nim' => $request->nim,
             'jabatan' => $request->jabatan,
             'struktur_id' => $request->struktur_id,
         ]);
+            $extension = $request->gambar->getClientOriginalExtension();
+            $name_picture = Str::slug($data->nama).'.' .$extension;
+            $namePath = strtolower('Anggota');
+            $path = public_path().'/storage/anggota/';
+            $dir = $namePath .'/' . $name_picture;
+            $file = $request->file('gambar');
+            $file->move($path, $name_picture);
+            if ($path != null) {
+                $data->gambar()->updateOrcreate(['name' => $name_picture, 'link' => $dir]);
+            }
+
         return response()->json(['success'=>'Anggota berhasil ditambahkan']);
+    }else{
+        return response()->json(['error'=>'Gambar harus diisi']);
+    }
     }
 
     /**

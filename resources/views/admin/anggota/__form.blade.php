@@ -1,7 +1,7 @@
 @extends('admin.modal')
 @section('form')
     <form id="dataForm" name="dataForm" enctype="multipart/form-data">
-        <input type="text" name="id" id="id">
+        <input type="text" name="id" id="id" hidden>
         <div class="form-group">
             <div class="form-line">
                 <label for="nama">Nama</label>
@@ -29,6 +29,13 @@
                     @endforeach
                 </select>
             </div>
+        </div>
+        <div class="form-group">
+            <div class="form-line">
+                <label for="gambar">Foto</label>
+                 <input type="file" id="gambar" name="gambar" class="form-control" accept="image/png, image/gif, image/jpeg" required>
+            </div>
+        </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
                     <i class="bx bx-x d-block d-sm-none"></i>

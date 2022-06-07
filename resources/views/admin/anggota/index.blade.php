@@ -43,6 +43,7 @@
                                     <th>NIM</th>
                                     <th>Jabatan</th>
                                     <th>Struktur</th>
+                                    <th>Foto</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -96,6 +97,10 @@
                     {
                         data: 'struktur',
                         name: 'struktur'
+                    },
+                    {
+                        data: 'foto',
+                        name: 'foto'
                     },
                     {
                         data: 'action',
