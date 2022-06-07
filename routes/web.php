@@ -45,6 +45,7 @@ Route::resource('/galery',GaleriController::class);
 Route::resource('/info',MainInformasiController::class);
 
 Route::get('/', [BerandaController::class, 'index']);
+Route::get('/public',[BerandaController::class, 'index']);
 Route::get('bg',[BerandaController::class, 'background']);
 // Route::get('/kegiatan',[HomeController::class, 'kegiatan'])->name('kegiatan');
 // // Route::get('/berita',[HomeController::class, 'berita'])->name('berita');
