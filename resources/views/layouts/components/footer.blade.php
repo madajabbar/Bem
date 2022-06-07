@@ -7,16 +7,28 @@
             </a>
             <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
                 <li>
-                    <a href="#" class="mr-4 hover:underline md:mr-6 ">About</a>
+                    <a href="http://bit.ly/IGBEMuntan" class="mr-4 hover:underline md:mr-6" target="_blank">
+                        <i class="bi bi-instagram"></i>
+                        <span>INSTAGRAM</span>
+                    </a>
                 </li>
                 <li>
-                    <a href="#" class="mr-4 hover:underline md:mr-6">Privacy Policy</a>
+                    <a href="http://bit.ly/FBBEMUNTAN" class="mr-4 hover:underline md:mr-6" target="_blank">
+                        <i class="bi bi-facebook"></i>
+                        <span>FACEBOOK</span>
+                    </a>
                 </li>
                 <li>
-                    <a href="#" class="mr-4 hover:underline md:mr-6 ">Licensing</a>
+                    <a href="http://bit.ly/YTBEMUntan" class="mr-4 hover:underline md:mr-6" target="_blank">
+                        <i class="bi bi-youtube"></i>
+                        <span>YOUTUBE</span>
+                    </a>
                 </li>
                 <li>
-                    <a href="#" class="hover:underline">Contact</a>
+                    <a href="bemkbmuntan@gmail.com" class="hover:underline" target="_blank">
+                        <i class="bi bi-mailbox2"></i>
+                        <span>EMAIL</span>
+                    </a>
                 </li>
             </ul>
         </div>

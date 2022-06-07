@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\main;
 
 use App\Http\Controllers\Controller;
+use App\Models\background;
 use App\Models\HubungiKami;
+use App\Models\VisiMisi;
 use Illuminate\Http\Request;
 
 class LayananController extends Controller
@@ -15,7 +17,8 @@ class LayananController extends Controller
      */
     public function index()
     {
-        return view('frontend.layanan.suara_mahasiswa.index');
+        $data['background'] = background::latest()->take(1)->get();
+        return view('frontend.layanan.suara_mahasiswa.index',$data);
     }
 
     /**

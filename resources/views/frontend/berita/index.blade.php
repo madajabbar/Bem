@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- start berita --}}
-    <section class=" border-b py-8">
+    <section class=" border-b py-8 h-screen">
         <div class="container mx-auto flex flex-wrap pt-4 pb-12">
             <h1 class="animate-bounce w-full my-2 text-5xl font-bold leading-tight text-right text-gray-800">
                 Berita Terbaru
@@ -10,7 +10,7 @@
             <div class="w-full mb-4">
                 <div class="h-1 mx gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
             </div>
-            @foreach ($berita as $data)
+            @forelse ($berita as $data)
                 <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
                     <div class="flex-1 bg-white rounded-md rounded-b-none overflow-hidden shadow ">
                         <a href="#" class="flex flex-wrap no-underline hover:no-underline shadow">
@@ -46,7 +46,21 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+                @empty
+                <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink h-full">
+                    <div class="flex justify-center">
+                        <a href="#">
+                        <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
+                        <div class="p-6 flex flex-col justify-start">
+                            <h5 class="text-gray-900 text-xl font-medium mb-2">DATA KOSONG</h5>
+                            <p class="text-gray-700 text-base mb-4">
+                            </p>
+                        </div>
+                        </div>
+                    </a>
+                    </div>
+                    </div>
+            @endforelse
         </div>
     </section>
     {{-- end berita --}}

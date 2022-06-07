@@ -28,7 +28,7 @@
             </a>
         </li>
         <li class="my-2 md:my-0">
-            <a href="{{route('activity.index')}}" class="text-light block py-1 md:py-3 pl-1 align-middle no-underline hover:text-gray-300">
+            <a href="{{route('info.index')}}" class="text-light block py-1 md:py-3 pl-1 align-middle no-underline hover:text-gray-300">
                 <i class="bi bi-info"></i>
                 <span class="pl-3">INFORMASI</span>
             </a>
@@ -46,7 +46,7 @@
             </a>
         </li>
         <li class="my-2 md:my-0">
-            <a href="#" class="block py-1 md:py-3 pl-1 align-middle no-underline hover:text-gray-300">
+            <a href="{{route('galery.index')}}" class="block py-1 md:py-3 pl-1 align-middle no-underline hover:text-gray-300">
                 <i class="bi bi-card-image"></i>
                 <span class="pl-3">GALERI</span>
             </a>

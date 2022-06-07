@@ -53,18 +53,23 @@
         }
 
         body {
-            background-image: background-image: url("images/Batman.jpg");
+            background-repeat: no-repeat;
+            background-size: auto;
+            background-attachment: fixed;
+            background-position: center;
         }
 
     </style>
 </head>
-
-<body class="leading-normal tracking-normal text-white bg-gray-50 font-mono">
+@foreach ($background as $data)
+    @foreach ($data->gambar as $gambar)
+    <body class="leading-normal tracking-normal text-white font-mono" style="background-image: url({{$gambar->link}})">
+        @endforeach
+    @endforeach
     @include('layouts.components.navbar')
     {{-- header --}}
     <div class="flex flex-row flex-wrap flex-1 flex-grow content-start pl-16">
         @yield('content')
-
         @include('layouts.components.footer')
     </div>
 

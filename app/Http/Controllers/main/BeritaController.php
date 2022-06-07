@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\main;
 
 use App\Http\Controllers\Controller;
+use App\Models\background;
 use App\Models\Berita;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,7 @@ class BeritaController extends Controller
     public function index()
     {
         $data['berita'] = Berita::orderBy('id','DESC')->get();
+        $data['background'] = background::latest()->take(1)->get();
         return view('frontend.berita.index',$data);
     }
 
@@ -50,7 +52,7 @@ class BeritaController extends Controller
     {
         // dd($id);
         $data['berita'] = Berita::where('id',$id)->first();
-
+        $data['background'] = background::latest()->take(1)->get();
         return view('frontend.berita.single-page.index', $data);
     }
 

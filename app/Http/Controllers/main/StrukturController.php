@@ -4,8 +4,10 @@ namespace App\Http\Controllers\main;
 
 use App\Http\Controllers\Controller;
 use App\Models\Anggota;
+use App\Models\background;
 use App\Models\Periode;
 use App\Models\Struktur;
+use App\Models\VisiMisi;
 use Illuminate\Http\Request;
 
 class StrukturController extends Controller
@@ -20,6 +22,7 @@ class StrukturController extends Controller
         $periode = Periode::latest()->take(1)->value('id');
         // dd($periode);
         $data['struktur'] = Struktur::orderBy('id', 'Asc')->where('periode_id', $periode)->get();
+        $data['background'] = background::latest()->take(1)->get();
         return view('frontend.profil.index',$data);
     }
 
@@ -53,7 +56,7 @@ class StrukturController extends Controller
     public function show($id)
     {
         $data['anggota'] = Anggota::where('struktur_id', $id)->get();
-
+        $data['background'] = background::latest()->take(1)->get();
         return view('frontend.profil.struktur.index', $data);
     }
 

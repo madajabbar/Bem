@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AnggotaController;
+use App\Http\Controllers\admin\BackgroundController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\HomeController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\admin\PeriodeController;
 use App\Http\Controllers\admin\SpandukController;
 use App\Http\Controllers\admin\StrukturController;
 use App\Http\Controllers\admin\TagController;
+use App\Http\Controllers\admin\VisiMisiController;
 use App\Http\Controllers\main\BerandaController;
 use App\Http\Controllers\main\BeritaController as MainBeritaController;
 use App\Http\Controllers\main\GaleriController;
@@ -43,6 +45,7 @@ Route::resource('/galery',GaleriController::class);
 Route::resource('/info',MainInformasiController::class);
 
 Route::get('/', [BerandaController::class, 'index']);
+Route::get('bg',[BerandaController::class, 'background']);
 // Route::get('/kegiatan',[HomeController::class, 'kegiatan'])->name('kegiatan');
 // // Route::get('/berita',[HomeController::class, 'berita'])->name('berita');
 // Route::get('/galeri',[HomeController::class, 'galeri'])->name('galeri');
@@ -60,6 +63,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('/spanduk', SpandukController::class);
     Route::resource('/kalender', KalenderController::class);
     Route::resource('/layananadmin', AdminLayananController::class);
+    Route::resource('/background', BackgroundController::class);
+    Route::resource('/visimisi', VisiMisiController::class);
     Route::post('/kalender/create',[KalenderController::class, 'create']);
     Route::post('/kalender/update',[KalenderController::class, 'update']);
     Route::post('/kalender/delete',[KalenderController::class, 'destroy']);

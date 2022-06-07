@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\main;
 
 use App\Http\Controllers\Controller;
+use App\Models\background;
 use App\Models\Kalender;
+use App\Models\VisiMisi;
 use Illuminate\Http\Request;
 
 class KalenderController extends Controller
@@ -25,7 +27,8 @@ class KalenderController extends Controller
         //  $data['title'] = 'Kalender BEM UNTAN';
          return response()->json($data);
         }
-        return view('frontend.kalender.index');
+        $data['background'] = background::latest()->take(1)->get();
+        return view('frontend.kalender.index',$data);
     }
 
     /**

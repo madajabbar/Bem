@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\main;
 
 use App\Http\Controllers\Controller;
+use App\Models\background;
+use App\Models\Gambar;
 use Illuminate\Http\Request;
 
 class GaleriController extends Controller
@@ -14,7 +16,9 @@ class GaleriController extends Controller
      */
     public function index()
     {
-        //
+        $data['galeri'] = Gambar::where('gambars_type', 'App\Models\Spanduk')->orWhere('gambars_type', 'App\Models\Berita')->get();
+        $data['background'] = background::latest()->take(1)->get();
+        return view('frontend.galeri.index',$data);
     }
 
     /**

@@ -7,49 +7,59 @@
             <h1 class="animate-bounce w-full my-2 text-5xl font-bold leading-tight text-left text-gray-800">
                 Kegiatan
             </h1>
-
             <div class="w-full mb-4">
                 <div class="h-1 ml-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
             </div>
             <div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-3 ">
                 @forelse($kegiatan as $data)
-                <div class="mx-auto p-2 sm:p-10 text-center cursor-pointer">
-                    <a href="{{ url('activity/' . $data->id) }}">
+                    <div class="mx-auto p-2 sm:p-10 text-center text-gray-700 cursor-pointer w-full">
+                        <a href="{{ url('activity/' . $data->id) }}">
+                            <div
+                                class="p-2 max-w-sm rounded overflow-hidden shadow-lg hover:bg-white transition duration-500  bg-white">
+                                <center>
+                                    <div class=" mx-auto">
+                                        @forelse ($data->gambar as $gambar)
+                                            <img src="{{ asset('storage/' . $gambar->link) }}" class="h-32 sm:h-64"
+                                                alt="test">
+                                        @break
+                                        @empty
+                                            <img src="https://picsum.photos/1000" class="h-32 sm:h-64" alt="f">
+                                        @endforelse
+                                    </div>
+                                </center>
+                                <div class="space-y-10 ">
+                                    <div class="px-6 py-4">
+                                        <div class="space-y-5">
+                                            <div class="font-bold text-xl mb-2 text-gray-700">{{ $data->judul }}</div>
+                                            <p class="text-gray-700 text-base">
+                                                {{ Str::limit($data->deskripsi, 100) }}
+                                            </p>
+                                            <p class="text-gray-700 text-base">
+                                                Kegiatan dari {{ $data->struktur->nama }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </a>
+                    </div>
+                @empty
+                    <div class="mx-auto p-2 sm:p-10 text-center cursor-pointer">
                         <div
                             class="py-16 max-w-sm rounded overflow-hidden shadow-lg hover:bg-white transition duration-500  bg-white">
                             <div class="space-y-10">
                                 <div class="px-6 py-4">
                                     <div class="space-y-5">
-                                        <div class="font-bold text-xl mb-2 text-gray-700">{{$data->judul}}</div>
+                                        <div class="font-bold text-xl mb-2"></div>
                                         <p class="text-gray-700 text-base">
-                                            {{Str::limit($data->deskripsi, 100)}}
-                                        </p>
-                                        <p class="text-gray-700 text-base">
-                                            Kegiatan dari {{$data->struktur->nama}}
+                                            Tidak Ada Kegiatan
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                    </a>
-                </div>
-                @empty
-                <div class="mx-auto p-2 sm:p-10 text-center cursor-pointer">
-                    <div
-                        class="py-16 max-w-sm rounded overflow-hidden shadow-lg hover:bg-white transition duration-500  bg-white">
-                        <div class="space-y-10">
-                            <div class="px-6 py-4">
-                                <div class="space-y-5">
-                                    <div class="font-bold text-xl mb-2"></div>
-                                    <p class="text-gray-700 text-base">
-                                        Tidak Ada Kegiatan
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </div>
                 @endforelse
             </div>
         </div>

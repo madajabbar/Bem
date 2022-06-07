@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\main;
 
 use App\Http\Controllers\Controller;
+use App\Models\background;
 use App\Models\Kegiatan;
+use App\Models\VisiMisi;
 use Illuminate\Http\Request;
 
 class KegiatanController extends Controller
@@ -15,7 +17,8 @@ class KegiatanController extends Controller
      */
     public function index()
     {
-        $data['kegiatan'] = Kegiatan::all();
+        $data['kegiatan'] = Kegiatan::orderBy('id', 'desc')->get();
+        $data['background'] = background::latest()->take(1)->get();
         return view('frontend.kegiatan.index',$data);
     }
 
@@ -50,7 +53,7 @@ class KegiatanController extends Controller
     {
         // dd($id);
         $data['kegiatan'] = Kegiatan::where('id',$id)->first();
-
+        $data['background'] = background::latest()->take(1)->get();
         return view('frontend.kegiatan.single-page.index', $data);
     }
 
