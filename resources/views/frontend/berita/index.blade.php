@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- start berita --}}
-    <section class=" border-b py-8 h-screen">
+    <section class=" border-b py-8 w-full">
         <div class="container mx-auto flex flex-wrap pt-4 pb-12">
             <h1 class="animate-bounce w-full my-2 text-5xl font-bold leading-tight text-right text-gray-800">
                 Berita Terbaru
@@ -11,55 +11,46 @@
                 <div class="h-1 mx gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
             </div>
             @forelse ($berita as $data)
-                <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
-                    <div class="flex-1 bg-white rounded-md rounded-b-none overflow-hidden shadow ">
-                        <a href="#" class="flex flex-wrap no-underline hover:no-underline shadow">
-
-                            <p class="w-full text-center text-gray-600 text-xs md:text-sm px-6 font-semibold">
-                                Berita {{ $loop->iteration }}
-                            </p>
-                            @forelse ($data->gambar as $gambar)
-                                @if ($loop->last)
-                                    <img class="rounded-t-lg w-5/6 h-48 mx-auto"
-                                        src="{{ asset('storage/' . $gambar->link) }}" alt="berita" />
-                                @endif
-                            @empty
-                                <img class="rounded-t-lg w-5/6 h-48 mx-auto" src="https://picsum.photos/200/300"
-                                    alt="tes" />
-                            @endforelse
-                            <div class="w-full font-bold text-center text-xl text-gray-800 px-6">
-                                {{ $data->judul }}
-                            </div>
-                            <p class="text-gray-800 text-base px-6 mb-5">
-                               tag : {{ $data->tag->name}}
-                               <br>
-                               dibuat : {{ $data->created_at->format('d-m-Y') }}
-                            </p>
-                        </a>
+                <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                    @forelse ($data->gambar as $gambar)
+                        <img class="w-full" src="{{ asset('storage/' . $gambar->link) }}"
+                            alt="Sunset in the mountains">
+                    @empty
+                        <img class="w-full" src="https://picsum.photos/200" alt="Sunset in the mountains">
+                    @endforelse
+                    <div class="px-6 py-4">
+                        <div class="font-bold text-xl mb-2">{{ $data->judul }}</div>
+                        <p class="text-gray-700 text-base">
+                            {{ Str::limit($data->isi, 100, '...')() }}
+                        </p>
                     </div>
-                    <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6 ">
-                        <div class="flex items-center justify-center">
-                            <a href="{{ url('news/' . $data->id) }}"
-                                class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                                lihat berita
-                            </a>
-                        </div>
+                    <div class="px-6 pt-4 pb-2">
+                        <span
+                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+                        <span
+                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+                        <span
+                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
                     </div>
                 </div>
-                @empty
-                <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink h-full">
-                    <div class="flex justify-center">
-                        <a href="#">
-                        <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
-                        <div class="p-6 flex flex-col justify-start">
-                            <h5 class="text-gray-900 text-xl font-medium mb-2">DATA KOSONG</h5>
-                            <p class="text-gray-700 text-base mb-4">
-                            </p>
-                        </div>
-                        </div>
-                    </a>
+            @empty
+                <div class="max-w-sm rounded overflow-hidden shadow-lg mx-auto">
+                    <img class="w-full" src="https://picsum.photos/200" alt="Sunset in the mountains">
+                    <div class="px-6 py-4">
+                        <div class="font-bold text-xl mb-2">BERITA KOSONG</div>
+                        <p class="text-gray-700 text-base">
+                            Tidak ada berita saat ini
+                        </p>
                     </div>
+                    <div class="px-6 pt-4 pb-2">
+                        <span
+                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+                        <span
+                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+                        <span
+                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
                     </div>
+                </div>
             @endforelse
         </div>
     </section>

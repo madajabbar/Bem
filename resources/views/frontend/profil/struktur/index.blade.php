@@ -11,43 +11,27 @@
                 <div class="h-1 mx gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
             </div>
             @forelse ($anggota as $data)
-                <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
-                    <div class="flex-1 bg-white rounded-md rounded-b-none overflow-hidden shadow ">
-                        <a href="#" class="flex flex-wrap no-underline hover:no-underline shadow">
-
-                            <p class="w-full text-center text-gray-600 text-xs md:text-sm px-6 font-semibold">
-
-                            </p>
-                            @forelse ($data->gambar as $gambar)
-                                @if ($loop->last)
-                                    <img class="rounded-t-lg w-5/6 h-48 mx-auto" src="{{ asset('storage/' . $gambar->link) }}"
-                                        alt="berita" />
-                                @endif
-                                @empty
-                                <img class="rounded-t-lg w-5/6 h-48 mx-auto" src="https://picsum.photos/200/300"
-                                        alt="tes" />
-                            @endforelse
-                            <div class="w-full font-bold text-center text-xl text-gray-800 px-6">
-                                {{ $data->nama }}
-                            </div>
-                            <div class="w-full font-bold text-center px-6">
-                                <p class="text-gray-800 text-base px-6 mb-5">
-                                    {{$data->jabatan}} di {{$data->struktur->nama}}
-                                </p>
-                                <p class="text-gray-800 text-base px-6 mb-5">
-                                    {{$data->nim}}
-                                </p>
-                            </div>
-
-                        </a>
+                <div class="max-w-sm rounded overflow-hidden shadow-lg mx-auto">
+                    @forelse ($data->gambar as $gambar)
+                        <img class="w-full" src="{{ asset('storage/' . $gambar->link) }}"
+                            alt="Sunset in the mountains">
+                            @break
+                    @empty
+                        <img class="w-full" src="https://picsum.photos/200" alt="Sunset in the mountains">
+                    @endforelse
+                    <div class="px-6 py-4">
+                        <div class="font-bold text-xl mb-2">{{ $data->nama }}</div>
+                        <p class="text-gray-700 text-base">
+                            {{$data->jabatan}} di {{$data->struktur->nama}}
+                        </p>
                     </div>
-                    <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6 ">
-                        <div class="flex items-center justify-center">
-                            <button
-                                class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                                Action
-                            </button>
-                        </div>
+                    <div class="px-6 pt-4 pb-2">
+                        <span
+                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{$data->nim}}</span>
+                        <span
+                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{$data->jabatan}}</span>
+                        <span
+                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{$data->struktur->nama}}</span>
                     </div>
                 </div>
                 @empty

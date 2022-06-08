@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="bemkbmuntan@gmail.com" class="hover:underline" target="_blank">
+                    <a href="mailto: bemkbmuntan@gmail.com" class="hover:underline" target="_blank">
                         <i class="bi bi-mailbox2"></i>
                         <span>EMAIL</span>
                     </a>
@@ -33,7 +33,7 @@
             </ul>
         </div>
         <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="https://flowbite.com" class="hover:underline">BEM UNTAN</a>. All Rights Reserved.
+        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="http://bemuntan.com" target="_blank" class="hover:underline">BEM UNTAN</a>. All Rights Reserved.
         </span>
     </footer>
     {{-- end footer --}}

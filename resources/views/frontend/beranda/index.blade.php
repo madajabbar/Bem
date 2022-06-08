@@ -69,25 +69,22 @@
 
                                     </center>
                                     <p class="text-gray-600 mb-8">
-                                            {{ $visi->visi }}
+                                        {{ $visi->visi }}
                                     </p>
                                 </div>
                             </div>
-                                @if (isset($visi->picture_visi) )
-                                    <img class=" mx-auto rounded-lg" src="{{ asset('storage/' . $visi->picture_visi) }}"
-                                        height="200" width="200" alt="">
-
-                                @else
-
-                                @endif
+                            @if (isset($visi->picture_visi))
+                                <img class=" mx-auto rounded-lg" src="{{ asset('storage/' . $visi->picture_visi) }}"
+                                    height="200" width="200" alt="">
+                            @else
+                            @endif
 
                         </div>
                         <div class="flex flex-wrap flex-col-reverse sm:flex-row">
-                            @if (isset($visi->picture_misi) )
+                            @if (isset($visi->picture_misi))
                                 <img class=" mx-auto rounded-lg" src="{{ asset('storage/' . $visi->picture_misi) }}"
-                                height="200" width="200">
-
-                                @else
+                                    height="200" width="200">
+                            @else
                             @endif
                             <div class="w-full sm:w-1/2 p-6 mt-6">
                                 <div class="align-middle bg-white rounded-lg">
@@ -97,7 +94,7 @@
                                         </h3>
                                     </center>
                                     <p class="text-gray-600 mb-8">
-                                            {{ $visi->misi }}
+                                        {{ $visi->misi }}
                                     </p>
                                 </div>
                             </div>
@@ -167,7 +164,9 @@
                 <div class="w-full mb-4">
                     <div class="h-1 mx gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
                 </div>
+
                 @foreach ($berita as $data)
+
                     <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
                         <div class="flex-1 bg-white rounded-md rounded-b-none overflow-hidden shadow ">
                             <a href="#" class="flex flex-wrap no-underline hover:no-underline shadow">

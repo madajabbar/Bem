@@ -11,34 +11,30 @@
                 <div class="h-1 mx gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
             </div>
             @forelse($struktur as $data)
-
-                <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
-                    <div class="flex justify-center">
-                        <a href="{{url('structure/'.$data->id)}}">
-                        <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
-                          <div class="p-6 flex flex-col justify-start">
-                            <h5 class="text-gray-900 text-xl font-medium mb-2">{{$data->nama}}</h5>
-                            <p class="text-gray-700 text-base mb-4">
-                              Periode {{$data->periode->periode}}
-                            </p>
-                            <p class="text-gray-600 text-xs">Dibuat {{$data->created_at->format('Y-m-d')}}</p>
-                          </div>
-                        </div>
-                    </a>
-                      </div>
+                <div class="max-w-sm rounded overflow-hidden shadow-lg mx-auto h-64 flex items-center justify-center">
+                    <center>
+                        <a href="{{ url('structure/' . $data->id) }}">
+                            <i class="bi bi-people-fill" style="font-size: 64px"></i>
+                            <div class="px-6 py-4 ">
+                                <div class="font-bold text-xl mb-2 ">{{ $data->nama }}</div>
+                                <p class="text-gray-700 text-base ">
+                                    Periode {{ $data->periode->periode }}
+                                </p>
+                                <p class="text-gray-700 text-base ">
+                                    Jumlah Anggota {{ $data->anggota->count() }}
+                                </p>
+                            </div>
+                        </a>
+                    </center>
                 </div>
             @empty
-                <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink h-full">
-                    <div class="flex justify-center">
-                        <a href="#">
-                        <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
-                        <div class="p-6 flex flex-col justify-start">
-                            <h5 class="text-gray-900 text-xl font-medium mb-2">DATA KOSONG</h5>
-                            <p class="text-gray-700 text-base mb-4">
-                            </p>
-                        </div>
-                        </div>
-                    </a>
+                <div class="max-w-sm rounded overflow-hidden shadow-lg mx-auto">
+                    <i class="bi bi-people-fill" style="font-size: 64px"></i>
+                    <div class="px-6 py-4">
+                        <div class="font-bold text-xl mb-2">DATA KOSONG</div>
+                        <p class="text-gray-700 text-base ">
+                            TIDAK ADA DATA YANG DITEMUKAN
+                        </p>
                     </div>
                 </div>
             @endforelse
