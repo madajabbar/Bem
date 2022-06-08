@@ -70,7 +70,8 @@ class SpandukController extends Controller
         // $img = $data->gambar()->latest()->value('link');
         $path = null;
         if ($request->spanduk) {
-            $name_picture = Str::slug($data->name) .'.webp';
+            $name = $request->spanduk;
+            $name_picture = Str::slug($name) .'.webp';
             $picture = Img::make($request->spanduk)->resize(null, 1000, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
@@ -131,12 +132,12 @@ class SpandukController extends Controller
     {
         $data = Spanduk::find($id);
 
-        foreach($data->gambar as $data){
-            $path = $data->link;
+        foreach($data->gambar as $gambar){
+            $path = $gambar->link;
             Storage::delete("public/" . $path);
             // $path->delete();
+            $data->delete();
         }
-        $data->delete();
         return response()->json(['success' => 'Berhasil dihapus']);
     }
 }

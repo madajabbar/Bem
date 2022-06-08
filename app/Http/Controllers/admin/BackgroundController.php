@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\background;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Storage;
@@ -69,7 +70,8 @@ class BackgroundController extends Controller
         // $img = $data->gambar()->latest()->value('link');
         $path = null;
         if ($request->background) {
-            $name_picture = Str::slug($data->name) . '.webp';
+            $name = $request->background;
+            $name_picture = Str::slug($name) . '.webp';
             $picture = Img::make($request->background)->resize(null, 1000, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
@@ -131,12 +133,12 @@ class BackgroundController extends Controller
     {
         $data = background::find($id);
 
-        foreach ($data->gambar as $data) {
-            $path = $data->link;
-            Storage::delete("public/" . $path);
+        foreach ($data->gambar as $gambar) {
+            $path = $gambar->link;
+            File::delete($path);
             // $path->delete();
+            $data->delete();
         }
-        $data->delete();
         return response()->json(['success' => 'Berhasil dihapus']);
     }
 }

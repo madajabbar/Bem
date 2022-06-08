@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Anggota;
 use App\Models\Struktur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
 class AnggotaController extends Controller
@@ -133,8 +134,13 @@ class AnggotaController extends Controller
      */
     public function destroy($id)
     {
-        Anggota::find($id)->delete();
-
+        $data= Anggota::find($id);
+        foreach ($data->gambar as $gambar) {
+            $path = $gambar->link;
+            Storage::delete("public/".$path);
+            // $path->delete();
+            $data->delete();
+        }
         return response()->json(['success'=>'Anggota berhasil dihapus']);
     }
 }
