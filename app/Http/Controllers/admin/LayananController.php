@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\TestMail;
 use App\Models\HubungiKami;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\Facades\DataTables;
 
 class LayananController extends Controller
@@ -23,8 +25,7 @@ class LayananController extends Controller
                     ->addIndexColumn()
                     ->addColumn('action', function ($content) {
                         return '
-                        <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $content->id . '" data-original-title="Edit" class="edit btn btn-info btn-sm editProduct"><i class="fa fa-pencil-square-o"></i></a>
-                                 <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $content->id . '" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct"><i class="fa fa-trash"></i></a>
+                        <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $content->id . '" data-original-title="Edit" class="edit btn btn-info btn-sm editProduct"><i class="bi bi-chat-left-dots-fill"></i></a>
                         ';
                     })
                     ->make(true);
@@ -50,8 +51,18 @@ class LayananController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        Mail::send('emails.test',
+             array(
+                 'nama' => $request->nama,
+                 'isi' => $request->isi,
+             ), function($message) use ($request)
+               {
+                  $message->from('layananmahasiswa@bemuntan.com');
+                  $message->to($request->email);
+               });
     }
+
 
     /**
      * Display the specified resource.
@@ -72,7 +83,8 @@ class LayananController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = HubungiKami::findOrFail($id);
+        return $data;
     }
 
     /**

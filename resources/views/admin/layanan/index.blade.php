@@ -27,12 +27,6 @@
         </div>
         <div class="page-content">
             <div class="card">
-                <div class="card-header">
-                    <button type="button" class="input btn btn-outline-primary block" data-bs-toggle="modal"
-                        data-bs-target="#exampleModalCenter">
-                        Input Data
-                    </button>
-                </div>
                 <div class="card-body">
                     <table class="table" id="table1">
                         <thead>
@@ -106,7 +100,7 @@
 
         });
         $('body').on('click', '.input', function() {
-            $('#exampleModalCenterTitle').html("Add Periode");
+            $('#exampleModalCenterTitle').html("Add layananadmin");
             $('#dataForm').trigger("reset");
         })
 
@@ -121,7 +115,7 @@
             if (check == true) {
                 $.ajax({
                     type: "DELETE",
-                    url: "{{ route('periode.store') }}" + '/' + data_id,
+                    url: "{{ route('layananadmin.store') }}" + '/' + data_id,
                     success: function(data) {
                         reloadDatatable();
                         Swal.fire({
@@ -143,12 +137,13 @@
 
         $('body').on('click', '.editProduct', function() {
             var data_id = $(this).data('id');
-            $.get("{{ route('periode.index') }}" + '/' + data_id + '/edit', function(data) {
-                $('#exampleModalCenterTitle').html("Edit Periode");
+            $.get("{{ route('layananadmin.index') }}" + '/' + data_id + '/edit', function(data) {
+                $('#exampleModalCenterTitle').html("Balas Pesan");
                 $('#saveBtn').val("edit");
                 $('#exampleModalCenter').modal('show');
                 $('#id').val(data.id);
-                $('#periode').val(data.periode);
+                $('#nama').val(data.nama);
+                $('#email').val(data.email);
             })
         });
     </script>
@@ -170,7 +165,7 @@
                     cache: false,
                     contentType: false,
                     processData: false,
-                    url: "{{ route('periode.store') }}",
+                    url: "{{ route('layananadmin.store') }}",
                     type: "POST",
                     dataType: 'json',
 

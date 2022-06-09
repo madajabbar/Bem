@@ -25,6 +25,8 @@ use App\Http\Controllers\main\KegiatanController as MainKegiatanController;
 use App\Http\Controllers\main\LayananController;
 use App\Http\Controllers\main\StrukturController as MainStrukturController;
 use App\Http\Controllers\main\VideoController as MainVideoController;
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,7 +77,16 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/berita/show/{id}', [BeritaController::class, 'show']);
     Route::get('/berita/gambar/delete/{id}', [BeritaController::class, 'deleteGambar']);
     Route::get('/kegiatan/show/{id}', [KegiatanController::class, 'show']);
+    Route::get('/send',[LayananController::class, 'send']);
 });
 
+Route::get('send', function () {
+    $data = [
+        'nama' => 'a',
+        'isi' =>'lorem',
+    ];
+    Mail::to("madajabbar22@gmail.com")->send(new TestMail($data));
 
+    return "Email telah dikirim";
+});
 require __DIR__.'/auth.php';
