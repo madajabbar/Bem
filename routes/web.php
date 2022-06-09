@@ -14,6 +14,7 @@ use App\Http\Controllers\admin\PeriodeController;
 use App\Http\Controllers\admin\SpandukController;
 use App\Http\Controllers\admin\StrukturController;
 use App\Http\Controllers\admin\TagController;
+use App\Http\Controllers\admin\VideoController;
 use App\Http\Controllers\admin\VisiMisiController;
 use App\Http\Controllers\main\BerandaController;
 use App\Http\Controllers\main\BeritaController as MainBeritaController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\main\KalenderController as MainKalenderController;
 use App\Http\Controllers\main\KegiatanController as MainKegiatanController;
 use App\Http\Controllers\main\LayananController;
 use App\Http\Controllers\main\StrukturController as MainStrukturController;
+use App\Http\Controllers\main\VideoController as MainVideoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +45,7 @@ Route::resource('/activity',MainKegiatanController::class);
 Route::resource('/calendar',MainKalenderController::class);
 Route::resource('/galery',GaleriController::class);
 Route::resource('/info',MainInformasiController::class);
-
+Route::resource('/videos',MainVideoController::class);
 Route::get('/', [BerandaController::class, 'index']);
 Route::get('/public',[BerandaController::class, 'index']);
 Route::get('bg',[BerandaController::class, 'background']);
@@ -66,6 +68,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('/layananadmin', AdminLayananController::class);
     Route::resource('/background', BackgroundController::class);
     Route::resource('/visimisi', VisiMisiController::class);
+    Route::resource('/video', VideoController::class);
     Route::post('/kalender/create',[KalenderController::class, 'create']);
     Route::post('/kalender/update',[KalenderController::class, 'update']);
     Route::post('/kalender/delete',[KalenderController::class, 'destroy']);

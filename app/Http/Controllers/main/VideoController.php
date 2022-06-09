@@ -4,15 +4,10 @@ namespace App\Http\Controllers\main;
 
 use App\Http\Controllers\Controller;
 use App\Models\background;
-use App\Models\Berita;
-use App\Models\Informasi;
-use App\Models\Kegiatan;
-use App\Models\Spanduk;
 use App\Models\Video;
-use App\Models\VisiMisi;
 use Illuminate\Http\Request;
-use Shetabit\Visitor\Traits\Visitable;
-class BerandaController extends Controller
+
+class VideoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,15 +16,10 @@ class BerandaController extends Controller
      */
     public function index()
     {
-        $data['berita'] = Berita::latest()->take(3)->get();
-        $data['kegiatan'] = Kegiatan::latest()->take(3)->get();
-        $data['informasi'] = Informasi::latest()->take(3)->get();
-        $data['spanduk'] = Spanduk::latest()->take(5)->get();
+        // dd($periode);
+        $data['video'] = Video::orderBy('id', 'desc')->paginate(3);
         $data['background'] = background::latest()->take(1)->get();
-        $data['visimisi'] = VisiMisi::latest()->take(1)->get();
-        $data['video'] = Video::latest()->take(1)->get();
-        visitor()->visit();
-        return view('frontend.beranda.index',$data);
+        return view('frontend.video.index',$data);
     }
 
     /**
@@ -96,15 +86,5 @@ class BerandaController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function background(){
-        $data = background::latest()->take(1)->get();
-        foreach($data as $data) {
-            foreach($data->gambar as $gambar){
-                $path = $gambar->link;
-            }
-        }
-        return $path;
     }
 }

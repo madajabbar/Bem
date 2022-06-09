@@ -262,5 +262,26 @@
             </div>
         </section>
         {{-- end kegiatan --}}
+        <div class="w-full mb-4">
+            <div class="h-1 ml-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+        </div>
+        {{-- start kegiatan --}}
+        <section class=" border-b py-8">
+            <div class="container mx-auto flex flex-wrap pt-4 pb-12">
+                <h1 class="animate-bounce w-full my-2 text-5xl font-bold leading-tight text-right text-gray-800">
+                    Video Terbaru
+                </h1>
+                <div class="w-full mb-4">
+                    <div class="h-1 mx gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+                </div>
+                @foreach ($video as $data)
+                    <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
+                        <iframe class="mx-auto" width="560" height="315" src="{{$data->link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <h4 class="mx-auto animate-bounce text-xl font-bold">{{$data->judul}}</h4>
+                    </div>
+                @endforeach
+            </div>
+        </section>
+        {{-- end kegiatan --}}
     </div>
 @endsection
