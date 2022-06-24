@@ -26,6 +26,7 @@ use App\Http\Controllers\main\LayananController;
 use App\Http\Controllers\main\StrukturController as MainStrukturController;
 use App\Http\Controllers\main\VideoController as MainVideoController;
 use App\Mail\TestMail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 /*
@@ -38,7 +39,7 @@ use Illuminate\Support\Facades\Mail;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes(['register' => false]);
 Route::resource('/home', BerandaController::class);
 Route::resource('/news',MainBeritaController::class);
 Route::resource('/structure',MainStrukturController::class);

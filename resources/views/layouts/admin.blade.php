@@ -100,6 +100,12 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a href="{{ Route('video.index') }}" class='sidebar-link'>
+                                <i class="bi bi-image"></i>
+                                <span>Video</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a href="" class="sidebar-link">
                                 <i class="bi bi-door-closed"></i>
                                 <form action="{{ Route('logout') }}" method="post">

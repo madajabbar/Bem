@@ -51,6 +51,12 @@
                 <span class="pl-3">GALERI</span>
             </a>
         </li>
+        <li class="my-2 md:my-0">
+            <a href="{{route('videos.index')}}" class="block py-1 md:py-3 pl-1 align-middle no-underline hover:text-gray-300">
+                <i class="bi bi-card-image"></i>
+                <span class="pl-3">VIDEO</span>
+            </a>
+        </li>
         {{-- <li class="my-2 md:my-0">
             <a href="{{route('layanan.index')}}" class="text-light block py-1 md:py-3 pl-1 align-middle no-underline hover:text-gray-300">
                 <i class="fa fa-wallet fa-fw mr-3"></i><span class="pl-3">HUBUNGI KAMI</span>
