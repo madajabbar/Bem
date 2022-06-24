@@ -22,13 +22,14 @@ class HomeController extends Controller
         $struktur = Struktur::latest()->value('id');
         $data['anggota'] = Anggota::where('struktur_id',$struktur)->get();
 
-        $items = Visitor::select(
+        $data['items'] = Visitor::select(
             DB::raw("(COUNT(*)) as count"),
             DB::raw("MONTHNAME(created_at) as month_name")
         )
         ->whereYear('created_at', date('Y'))
         ->groupBy('month_name')
         ->get();
+        $data['visitor'] = Visitor::all();
         return view('admin.dashboard.index',$data);
     }
 }

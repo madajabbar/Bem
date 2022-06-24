@@ -93,10 +93,10 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h4>Visitors Profile</h4>
+                        <h4>Total Pengunjung</h4>
                     </div>
-                    <div class="card-body">
-                        <div id="chart-visitors-profile"></div>
+                    <div class="card-body px-3 py-4-5 mx-auto">
+                        <h2 class="font-extrabold mb-0">{{ $visitor->count() }}</h2>
                     </div>
                 </div>
             </div>
@@ -105,11 +105,11 @@
                     <div class="card-body py-4 px-5">
                         <div class="d-flex align-items-center">
                             <div class="avatar avatar-xl">
-                                <img src="assets/images/faces/1.jpg" alt="Face 1">
+                                <img src="{{asset('images/logo_bem.png')}}" alt="Face 1">
                             </div>
                             <div class="ms-3 name">
-                                <h5 class="font-bold">{{Auth::user()->name}}</h5>
-                                <h6 class="text-muted mb-0">{{Auth::user()->email}}</h6>
+                                <h5 class="font-bold">{{ Auth::user()->name }}</h5>
+                                <h6 class="text-muted mb-0">{{ Auth::user()->email }}</h6>
                             </div>
                         </div>
                     </div>

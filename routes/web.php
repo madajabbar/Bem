@@ -39,7 +39,17 @@ use Illuminate\Support\Facades\Mail;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes(['register' => false]);
+Auth::routes([
+
+    'register' => false, // Register Routes...
+
+    'reset' => false, // Reset Password Routes...
+
+    'verify' => false, // Email Verification Routes...
+
+  ]);
+
+
 Route::resource('/home', BerandaController::class);
 Route::resource('/news',MainBeritaController::class);
 Route::resource('/structure',MainStrukturController::class);
