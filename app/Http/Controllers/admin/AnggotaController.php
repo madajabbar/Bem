@@ -30,9 +30,10 @@ class AnggotaController extends Controller
                         return $data->struktur->nama;
                     })
                     ->addColumn('foto',function ($data){
-                        foreach ($data->gambar as $data){
+                        foreach (array_reverse($data->gambar) as $data){
                             $gambar = asset('storage/'.$data->link);
                             return '<img src="'.$gambar.'" alt="'.$gambar.'" width="200" height="300">';
+                            break;
                         }
                     })
                     ->addColumn('action', function ($content) {
@@ -87,7 +88,14 @@ class AnggotaController extends Controller
 
         return response()->json(['success'=>'Anggota berhasil ditambahkan']);
     }else{
-        return response()->json(['error'=>'Gambar harus diisi']);
+        $data= Anggota::updateOrCreate(['id' => $request->id],
+        [
+            'nama' => $request->nama,
+            'nim' => $request->nim,
+            'jabatan' => $request->jabatan,
+            'struktur_id' => $request->struktur_id,
+        ]);
+        return response()->json(['success'=>'']);
     }
     }
 

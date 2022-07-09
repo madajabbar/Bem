@@ -48,8 +48,7 @@
             </div>
 
         </div>
-        {{-- end header --}}
-        @forelse ($visimisi as $visi)
+        {{-- end header --}}=
             <section class="w-7/8">
                 <div class="border-b py-8 container mx-auto">
                     <div class="container max-w-5xl mx-auto m-8">
@@ -68,24 +67,18 @@
                                         </h3>
 
                                     </center>
-                                    <p class="text-gray-600 mb-8">
-                                        {{ $visi->visi }}
+                                    <p class="text-gray-600 mb-8 ">
+                                        BEM KBM UNTAN Inklusif & Inovatif
                                     </p>
                                 </div>
                             </div>
-                            @if (isset($visi->picture_visi))
-                                <img class=" mx-auto rounded-lg" src="{{ asset('storage/' . $visi->picture_visi) }}"
-                                    height="200" width="200" alt="">
-                            @else
-                            @endif
+                                <img class=" mx-auto rounded-lg" src="{{ asset('images/visi.png') }}"
+                                    alt="">
 
                         </div>
                         <div class="flex flex-wrap flex-col-reverse sm:flex-row">
-                            @if (isset($visi->picture_misi))
-                                <img class=" mx-auto rounded-lg" src="{{ asset('storage/' . $visi->picture_misi) }}"
-                                    height="200" width="200">
-                            @else
-                            @endif
+                                <img class=" mx-auto rounded-lg" src="{{ asset('images/misi.png') }}"
+                                    >
                             <div class="w-full sm:w-1/2 p-6 mt-6">
                                 <div class="align-middle bg-white rounded-lg">
                                     <center>
@@ -93,8 +86,18 @@
                                             Misi
                                         </h3>
                                     </center>
-                                    <p class="text-gray-600 mb-8">
-                                        {{ $visi->misi }}
+                                    <p class="text-gray-600 mb-8 text-justify">
+                                        - Menjadikan arah perjuangan dan pergerakan BEM KBM UNTAN sebagai wadah mahasiswa untuk berkolaborasi
+                                        <br>
+                                        - Mewujudkan media center untuk optimalisasi informasi dan komunikasi yang terbuka dalam penyerapan aspirasi mahasiswa
+                                        <br>
+                                        - Fasilisator dalam pengembangan prestasi mahasiswa di bidang akademik dan non-akademik
+                                        <br>
+                                        - Menjadi inisiator mahasiswa BEM KBM UNTAN dalam gerakan sosial politik yang inklusif dan berorientasi pada egalitarianism
+                                        <br>
+                                        - Menciptakan program secara sustainable dalam pengabdian kepada masyarakat
+                                        <br>
+                                        - Meningkatkan eksistensi BEM KBM UNTAN dengan bersinergi Bersama stakeholders eksternal dan internal UNTAN
                                     </p>
                                 </div>
                             </div>
@@ -102,57 +105,6 @@
                     </div>
                 </div>
             </section>
-        @empty
-            <section class="w-7/8">
-                <div class="border-b py-8 container mx-auto">
-                    <div class="container max-w-5xl mx-auto m-8">
-                        <h1 class="animate-bounce w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
-                            BERANDA
-                        </h1>
-                        <div class="w-full mb-4">
-                            <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
-                        </div>
-                        <div class="flex flex-wrap">
-                            <div class="w-5/6 sm:w-1/2 p-6">
-                                <div class="align-middle bg-white rounded-lg">
-                                    <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                                        Visi
-                                    </h3>
-                                    <p class="text-gray-600 mb-8">
-                                        @foreach ($visimisi as $visi)
-                                            {{ $visi->visi }}
-                                        @endforeach
-                                    </p>
-                                </div>
-                            </div>
-                            @foreach ($visimisi as $picture_visi)
-                                <img class=" mx-auto" src="{{ asset('storage/' . $picture_visi->picture_visi) }}"
-                                    height="200" width="200" alt="">
-                            @endforeach
-
-                        </div>
-                        <div class="flex flex-wrap flex-col-reverse sm:flex-row">
-                            @foreach ($visimisi as $picture_misi)
-                                <img class=" mx-auto" src="{{ asset('storage/' . $picture_misi->picture_misi) }}"
-                                    height="200" width="200" alt="">
-                            @endforeach
-                            <div class="w-full sm:w-1/2 p-6 mt-6">
-                                <div class="align-middle bg-white">
-                                    <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                                        Misi
-                                    </h3>
-                                    <p class="text-gray-600 mb-8">
-                                        @foreach ($visimisi as $misi)
-                                            {{ $misi->misi }}
-                                        @endforeach
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        @endforelse
         {{-- end beranda --}}
 
         {{-- start berita --}}

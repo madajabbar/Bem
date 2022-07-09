@@ -12,51 +12,54 @@
         .fontawesome-icons .the-icon svg {
             font-size: 24px;
         }
-
     </style>
 @endsection
 @section('content')
-        <header class="mb-3">
-            <a href="#" class="burger-btn d-block d-xl-none">
-                <i class="bi bi-justify fs-3"></i>
-            </a>
-        </header>
+    <header class="mb-3">
+        <a href="#" class="burger-btn d-block d-xl-none">
+            <i class="bi bi-justify fs-3"></i>
+        </a>
+    </header>
 
-        <div class="page-heading">
-            <h3>{{ $data['title'] }}</h3>
-        </div>
-        <div class="page-content">
-            <div class="card">
-                <div class="card-header">
-                    <button type="button" class="input btn btn-outline-primary block" data-bs-toggle="modal"
-                        data-bs-target="#exampleModalCenter">
-                        Input Data
-                    </button>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table" id="table1">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Judul</th>
-                                    <th>Deskripsi</th>
-                                    <th>Struktur</th>
-                                    <th>Gambar</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                @include('admin.kegiatan.__form')
+    <div class="page-heading">
+        <h3>{{ $data['title'] }}</h3>
+    </div>
+    <div class="page-content">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" class="input btn btn-outline-primary block" data-bs-toggle="modal"
+                    data-bs-target="#exampleModalCenter">
+                    Input Data
+                </button>
             </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table" id="table1">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Judul</th>
+                                <th>Deskripsi</th>
+                                <th>Struktur</th>
+                                <th>Gambar</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            @include('admin.kegiatan.__form')
         </div>
+    </div>
 @endsection
 
 @section('js')
+    <script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('deskripsi');
+    </script>
     <script src="{{ asset('assets/vendors/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/jquery-datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/jquery-datatables/custom.jquery.dataTables.bootstrap5.min.js') }}"></script>
@@ -151,7 +154,7 @@
                 $('#exampleModalCenter').modal('show');
                 $('#id').val(data.id);
                 $('#judul').val(data.judul);
-                $('#deskripsi').val(data.deskripsi);
+                $('#deskripsi').val(CKEDITOR.instances['content'].setData(data.deskripsi));
                 $('#periode_id').val(data.periode_id);
             })
         });
@@ -169,6 +172,7 @@
                 $(this).html('Sending..');
                 var myform = document.getElementById('dataForm');
                 var formData = new FormData(myform);
+                formData.append('deskripsi', CKEDITOR.instances['content'].getData());
 
                 $.ajax({
                     data: formData,

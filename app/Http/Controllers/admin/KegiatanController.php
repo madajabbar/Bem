@@ -33,6 +33,9 @@ class KegiatanController extends Controller
                                  <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $content->id . '" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct"><i class="fa fa-trash"></i></a>
                         ';
                     })
+                    ->editColumn('deskripsi', function ($data){
+                        return substr($data->deskripsi, 0, 200) . '. . . . . . . . . . . . . . . .';
+                    })
                     ->editColumn('struktur',function ($data){
                         return $data->struktur->nama;
                     })

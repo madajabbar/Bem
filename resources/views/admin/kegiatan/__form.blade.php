@@ -8,11 +8,10 @@
                 <input type="text" name="judul" id="judul" class="form-control" placeholder="Presiden dan Wakil Presiden">
             </div>
         </div>
-        <div class="form-group">
-            <div class="form-line">
-                <label for="deskripsi">Deskripsi</label>
-                <input type="text" name="deskripsi" id="deskripsi" class="form-control" placeholder="Presiden dan Wakil Presiden">
-            </div>
+        <div class="form-line">
+            <label for="content">Deskripsi</label>
+            <textarea class="content form-control" id="content" cols="30" rows="10" name="deskripsi"></textarea>
+            {{-- <textarea id="isi" name="isi" id="" cols="30" rows="10"></textarea> --}}
         </div>
         <div class="form-group">
             <div class="form-line">

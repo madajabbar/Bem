@@ -32,7 +32,7 @@ class BeritaController extends Controller
                     return $row->tag->name;
                 })
                 ->editColumn('isi', function ($row) {
-                    return substr($row->isi, 0, 200) . '. . . . . . . . . . . . . . . .';
+                    return substr($row->isi, 0, 100) . '. . . . . . . . . . . . . . . .';
                 })
                 ->editColumn('picture', function ($data) {
                     return '<img src="asset(storage/' . $data->picture . ')" alt="Girl in a jacket" width="500" height="600">';
