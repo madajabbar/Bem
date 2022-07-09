@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Spanduk;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -71,7 +72,7 @@ class SpandukController extends Controller
         $path = null;
         if ($request->spanduk) {
             $name = $request->spanduk;
-            $name_picture = Str::slug($name) .'.webp';
+            $name_picture = Carbon::now().Str::random(8) .'.webp';
             $picture = Img::make($request->spanduk)->resize(null, 1000, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
