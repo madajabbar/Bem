@@ -23,18 +23,15 @@ class AnggotaController extends Controller
             $data = Anggota::latest()->get();
             return DataTables::of($data)
                     ->addIndexColumn()
-                    ->editColumn('picture',function ($data){
-                        return '<img src="asset(storage/'.$data->picture .')" alt="Girl in a jacket" width="500" height="600">';
-                    })
-                    ->editColumn('struktur',function ($data){
+                    ->editColumn('struktur_id',function ($data){
                         return $data->struktur->nama;
                     })
                     ->addColumn('foto',function ($data){
-                        foreach (array_reverse($data->gambar) as $data){
-                            $gambar = asset('storage/'.$data->link);
+                        if (count($data->gambar) > 0) {
+                            $gambar = asset('storage/'.$data->gambar->last()->link);
                             return '<img src="'.$gambar.'" alt="'.$gambar.'" width="200" height="300">';
-                            break;
                         }
+                        else return '';
                     })
                     ->addColumn('action', function ($content) {
                         return '

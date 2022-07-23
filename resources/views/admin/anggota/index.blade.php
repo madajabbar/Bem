@@ -95,8 +95,8 @@
                         name: 'jabatan'
                     },
                     {
-                        data: 'struktur',
-                        name: 'struktur'
+                        data: 'struktur_id',
+                        name: 'struktur_id'
                     },
                     {
                         data: 'foto',
