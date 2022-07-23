@@ -48,7 +48,7 @@
             </div>
 
         </div>
-        {{-- end header --}}=
+        {{-- end header --}}
             <section class="w-7/8">
                 <div class="border-b py-8 container mx-auto">
                     <div class="container max-w-5xl mx-auto m-8">
