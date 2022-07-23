@@ -32,7 +32,7 @@
                                         <div class="space-y-5">
                                             <div class="font-bold text-xl mb-2 text-gray-700">{{ $data->judul }}</div>
                                             <p class="text-gray-700 text-base">
-                                                {{ Str::limit($data->deskripsi, 100) }}
+                                                {!! Str::limit($data->deskripsi, 100) !!}
                                             </p>
                                             <p class="text-gray-700 text-base">
                                                 Kegiatan dari {{ $data->struktur->nama }}
