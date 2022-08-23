@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- start berita --}}
-    <section class="container border-b py-8 h-screen">
+    <section class="container border-b py-8">
         <div class="container mx-auto flex flex-wrap pt-4 pb-12">
             <h1 class="animate-bounce w-full my-2 text-5xl font-bold leading-tight text-right text-gray-800">
                 STRUKTUR

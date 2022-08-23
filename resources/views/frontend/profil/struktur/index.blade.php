@@ -13,9 +13,10 @@
             @forelse ($anggota as $data)
                 <div class="max-w-sm rounded overflow-hidden shadow-lg mx-auto">
                     @forelse ($data->gambar as $gambar)
-                        <img class="w-full" src="{{ asset('storage/' . $gambar->link) }}"
-                            alt="Sunset in the mountains">
-                            @break
+                    @if ($loop->last)
+                    <img class="w-full" src="{{ asset('storage/' . $gambar->link) }}"
+                        alt="Sunset in the mountains">
+                    @endif
                     @empty
                         <img class="w-full" src="https://picsum.photos/200" alt="Sunset in the mountains">
                     @endforelse
