@@ -11,7 +11,35 @@
                 <div class="h-1 mx gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
             </div>
             @forelse ($menteri->sortBy('jabatan') as $data)
-                @if($data->jabatan == 'Presiden Mahasiswa' || $data->jabatan == 'Wakil Presiden Mahasiswa')
+                <div class="max-w-sm rounded overflow-hidden shadow-lg mx-auto">
+                    @forelse ($data->gambar as $gambar)
+                    @if ($loop->last)
+                    <img class="w-full" src="{{ asset('storage/' . $gambar->link) }}"
+                        alt="Sunset in the mountains">
+                    @endif
+                    @empty
+                        <img class="w-full" src="https://picsum.photos/200" alt="Sunset in the mountains">
+                    @endforelse
+                    <div class="px-6 py-4">
+                        <div class="font-bold text-xl mb-2">{{ $data->nama }}</div>
+                        <p class="text-gray-700 text-base">
+                            {{$data->jabatan}} {{$data->struktur->nama}}
+                        </p>
+                    </div>
+                    <div class="px-6 pt-4 pb-2">
+                        <span
+                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{$data->nim}}</span>
+                        <span
+                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{$data->jabatan}}</span>
+                        <span
+                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{$data->struktur->nama}}</span>
+                    </div>
+                </div>
+                @empty
+            @endforelse
+            @forelse ($anggota->sortBy('jabatan') as $data)
+                @if ($data->jabatan == 'Presiden Mahasiswa' || $data->jabatan == 'Wakil Presiden Mahasiswa')
+
                 <div class="max-w-sm rounded overflow-hidden shadow-lg mx-auto">
                     @forelse ($data->gambar as $gambar)
                     @if ($loop->last)
@@ -37,6 +65,7 @@
                     </div>
                 </div>
                 @else
+
                 <div class="max-w-sm rounded overflow-hidden shadow-lg mx-auto">
                     @forelse ($data->gambar as $gambar)
                     @if ($loop->last)
@@ -62,34 +91,6 @@
                     </div>
                 </div>
                 @endif
-                @empty
-            @endforelse
-            @forelse ($anggota->sortBy('jabatan') as $data)
-
-                <div class="max-w-sm rounded overflow-hidden shadow-lg mx-auto">
-                    @forelse ($data->gambar as $gambar)
-                    @if ($loop->last)
-                    <img class="w-full" src="{{ asset('storage/' . $gambar->link) }}"
-                        alt="Sunset in the mountains">
-                    @endif
-                    @empty
-                        <img class="w-full" src="https://picsum.photos/200" alt="Sunset in the mountains">
-                    @endforelse
-                    <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2">{{ $data->nama }}</div>
-                        <p class="text-gray-700 text-base">
-                            {{$data->jabatan}} di {{$data->struktur->nama}}
-                        </p>
-                    </div>
-                    <div class="px-6 pt-4 pb-2">
-                        <span
-                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{$data->nim}}</span>
-                        <span
-                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{$data->jabatan}}</span>
-                        <span
-                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{$data->struktur->nama}}</span>
-                    </div>
-                </div>
                 @empty
                 <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink ">
                     <div class="flex-1 bg-white rounded-md rounded-b-none overflow-hidden shadow ">
