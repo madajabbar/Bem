@@ -55,7 +55,9 @@ class StrukturController extends Controller
      */
     public function show($id)
     {
-        $data['anggota'] = Anggota::where('struktur_id', $id)->get();
+        $data['menteri'] = Anggota::where('struktur_id', $id)->where('jabatan','like','%menteri%')->get();
+        $data['anggota'] = Anggota::where('struktur_id', $id)->where('jabatan','not like','%menteri%')->get();
+        // dd($data['anggota']);
         $data['background'] = background::latest()->take(1)->get();
         return view('frontend.profil.struktur.index', $data);
     }

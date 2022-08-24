@@ -157,6 +157,7 @@
                 $('#id').val(data.id);
                 $('#nama').val(data.nama);
                 $('#nim').val(data.nim);
+                $('#jabatan').val(data.jabatan)
             })
         });
     </script>
