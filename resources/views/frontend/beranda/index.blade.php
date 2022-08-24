@@ -51,6 +51,7 @@
         {{-- end header --}}
             <section class="w-7/8">
                 <div class="border-b py-8 container mx-auto">
+
                     <div class="container max-w-5xl mx-auto m-8">
                         <h1 class="animate-bounce w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
                             BERANDA
@@ -68,16 +69,16 @@
 
                                     </center>
                                     <p class="text-gray-600 mb-8 ">
-                                        BEM KBM UNTAN Inklusif & Inovatif
+                                    {{$visimisi ? $visimisi->visi : 'BEM KBM UNTAN Inklusif & Inovatif'}}
                                     </p>
                                 </div>
                             </div>
-                                <img class=" mx-auto rounded-lg" src="{{ asset('images/visi.png') }}"
+                                <img class="h-32 md:h-32 lg:h-48 mx-auto rounded-lg" src="{{$visimisi ? asset('storage/'.$visimisi->picture_visi) : asset('images/visi.png') }}"
                                     alt="">
 
                         </div>
                         <div class="flex flex-wrap flex-col-reverse sm:flex-row">
-                                <img class=" mx-auto rounded-lg" src="{{ asset('images/misi.png') }}"
+                                <img class="h-48 md:h-32 lg:h-48 mx-auto rounded-lg" src="{{$visimisi ? asset('storage/'.$visimisi->picture_misi) : asset('images/misi.png') }}"
                                     >
                             <div class="w-full sm:w-1/2 p-6 mt-6">
                                 <div class="align-middle bg-white rounded-lg">
@@ -87,17 +88,7 @@
                                         </h3>
                                     </center>
                                     <p class="text-gray-600 mb-8 text-justify">
-                                        - Menjadikan arah perjuangan dan pergerakan BEM KBM UNTAN sebagai wadah mahasiswa untuk berkolaborasi
-                                        <br>
-                                        - Mewujudkan media center untuk optimalisasi informasi dan komunikasi yang terbuka dalam penyerapan aspirasi mahasiswa
-                                        <br>
-                                        - Fasilisator dalam pengembangan prestasi mahasiswa di bidang akademik dan non-akademik
-                                        <br>
-                                        - Menjadi inisiator mahasiswa BEM KBM UNTAN dalam gerakan sosial politik yang inklusif dan berorientasi pada egalitarianism
-                                        <br>
-                                        - Menciptakan program secara sustainable dalam pengabdian kepada masyarakat
-                                        <br>
-                                        - Meningkatkan eksistensi BEM KBM UNTAN dengan bersinergi Bersama stakeholders eksternal dan internal UNTAN
+                                        {!!$visimisi ? $visimisi->misi : 'BEM KBM UNTAN Inklusif & Inovatif'!!}
                                     </p>
                                 </div>
                             </div>
@@ -205,7 +196,7 @@
                             </div>
                             <div class="flex items-center justify-center">
                                 <p class="text-gray-800 text-base px-6 mb-5">
-                                    {{ Str::limit($data->struktur_id, 100, $end = '.......') }}
+                                    {!! Str::limit($data->deskripsi, 100, $end = '.......') !!}
                                 </p>
                             </div>
                         </div>

@@ -26,7 +26,7 @@ class BerandaController extends Controller
         $data['informasi'] = Informasi::latest()->take(3)->get();
         $data['spanduk'] = Spanduk::latest()->take(5)->get();
         $data['background'] = background::latest()->take(1)->get();
-        $data['visimisi'] = VisiMisi::latest()->take(1)->get();
+        $data['visimisi'] = VisiMisi::latest()->first();
         $data['video'] = Video::latest()->take(1)->get();
         visitor()->visit();
         return view('frontend.beranda.index',$data);
